@@ -1,0 +1,50 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+<title>Alberti Cipher Disk</title>
+
+
+<script src="jquery-2.1.0.js"></script>
+<script src="raphael-min.js"></script>
+</head>
+
+<body>
+
+<canvas id="canvas" width="578" height="400"></canvas>
+<script>
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+var radius = 70;
+
+context.beginPath();
+context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+context.fillStyle = 'green';
+context.fill();
+context.lineWidth = 5;
+context.strokeStyle = '#003300';
+context.stroke();
+
+context.beginPath();
+context.arc(centerX, centerY, radius, 0, Math.PI/3, false);
+context.closePath();
+context.fillStyle = 'green';
+context.fill();
+context.lineWidth = 2;
+context.strokeStyle = '#0033AB';
+context.stroke();
+
+$("#canvas").click(function(e){
+    var x = Math.floor((e.pageX-$("#canvas").offset().left) / 20);
+    var y = Math.floor((e.pageY-$("#canvas").offset().top) / 20);
+    context.fillStyle = "rgb(255,255,255)";
+    context.fillRect(x*20, y*20, 20, 20);
+});
+
+</script>
+
+</body>
+</html>

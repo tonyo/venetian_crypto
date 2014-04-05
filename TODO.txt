@@ -1,0 +1,7 @@
+Canvas -- just pixels
+
+Object-oriented canvas libs:
+
+* ocanvas?
+* kineticJs?
+* Raphael
