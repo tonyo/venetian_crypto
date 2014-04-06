@@ -4,100 +4,120 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 <head>
 <title>Alberti Cipher Disk</title>
-<script src="jquery-2.1.0.js"></script>
-<script src="raphael.js"></script>
+<script src="js/jquery-2.1.0.js"></script>
+<script src="js/raphael-min.js"></script>
 </head>
 
 <body>
-<div id="holder"></div>
+<div id="holder" style="border: solid 3px #000; width: auto; display: inline-block;"></div>
+<div id="wheelinfo" style="text-align: center;">Click wheel to rotate.</div>
 <script>
 
-Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
-        var paper = this,
-            rad = Math.PI / 180;
+holder = '#holder'
+startRotation = 0;
+wheelIsRotating = false;
+totalRotations = 52;
+oneRotAngle = 360.0 / totalRotations;
 
-    function sector(cx, cy, r, startAngle, endAngle, params) {
-        var x1 = cx + r * Math.cos(-startAngle * rad),
-            x2 = cx + r * Math.cos(-endAngle * rad),
-            y1 = cy + r * Math.sin(-startAngle * rad),
-            y2 = cy + r * Math.sin(-endAngle * rad);
-        var path = paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
-        return path;
-        var sector = {cx: cx, cy: cy, size: endAngle - startAngle, path: path};
-        return sector;
+// from http://inventwithpython.com/cipherwheel/
+function getAngle(e) {
+    var wheeloffset = $(holder).offset();
+    var wheelwidth = $(holder).width();
+    var wheelheight = $(holder).height();
+    var originx = wheeloffset.left + (wheelwidth / 2);
+    var originy = wheeloffset.top + (wheelheight / 2);
+
+    var x = e.pageX - originx;
+    var y = e.pageY - originy;
+
+    if (x == 0) {
+        if (y <= 0) {
+            return 90.0;
+        }
+        else {
+            return 270.0;
+        }
+    }
+    var slope = (y / x);
+    var angle = Math.atan( slope ) * (180 / 3.141592);
+
+    if (y >= 0 && x >= 0) {
+        angle = (90 - angle) + 270.0;
+    }
+    if (y >= 0 && x < 0) {
+        angle = -angle + 180.0;
+    }
+    if( y < 0 && x < 0) {
+        angle = (90 - angle) + 90.0;
+    }
+    if (y < 0 && x >= 0) {
+        angle = -angle;
     }
 
-    function sector_set(sector, cx, cy, r, startAngle, endAngle, params) {
-        var x1 = cx + r * Math.cos(-startAngle * rad),
-            x2 = cx + r * Math.cos(-endAngle * rad),
-            y1 = cy + r * Math.sin(-startAngle * rad),
-            y2 = cy + r * Math.sin(-endAngle * rad);
-        var attrs = ["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"];
-        sector.attr("path", attrs);
+    if (angle == 360.0) {
+        return 0.0;
     }
+    else {
+        return angle;
+    }
+}
 
-    
+function showRotation(n) {
+    var angle = 360.0 / totalRotations * n;
+    img.animate({transform: "r" + angle}, 0);
+}
 
-    params = {fill: "#0fc", "stroke-width": 3};
-    p = sector(200, 200, 100, 0, 45, params);
-    angle = 10;
-    p.click(function(){
-                sector_set(p, 200, 200, 100, angle, angle + 45, params);
-                angle += 10;
-            });
+function clickCipherWheel(e) {
+    var angle = getAngle(e);
 
+    if (wheelIsRotating) {
+        wheelIsRotating = false;
+        $('#wheelinfo').html('Click wheel to rotate.');
+        adjustment = parseInt((startAngle - angle) / oneRotAngle);
+        startRotation = (adjustment + startRotation) % totalRotations;
+        return;
+    }
+    else {
+        startAngle = angle;
+        wheelIsRotating = true;
+        $('#wheelinfo').html('Click wheel to stop rotating.');
+    }
 }
 
 
-$(function () {
-        $("table").hide();
-        Raphael("holder", 700, 700).pieChart(350, 350, 200, [], [], "#f0f");
-        });
+function rotateCipherWheel(e) {
+    if (!wheelIsRotating) {
+        return;
+    }
+    adjustment = parseInt((startAngle - getAngle(e)) / oneRotAngle);
+    currentRotation = (adjustment + startRotation) % totalRotations;
+    showRotation(currentRotation);
+}
+
+$(holder).click( clickCipherWheel );
+$(holder).mousemove( rotateCipherWheel );
+
+Raphael.fn.disks = function (cx, cy, r) {
+    var paper = this;
+
+    var imgX = 300,
+        imgY = 300;
+
+    img_inner = paper.image("img/alberti_inner.png",cx - imgX/2, cy - imgY/2, imgX, imgY);
+    img = paper.image("img/alberti_outer.png", cx - imgX/2, cy - imgY/2, imgX, imgY);
+}
+
+
+var width = 400,
+    height = 400,
+    diskx = width / 2,
+    disky = height / 2,
+    diskrad = 100;
+
+$(document).ready(function() {
+    Raphael("holder", width, height).disks(diskx, disky, diskrad);
+});
 
 </script>
-<table>
-    <tbody>
-    <tr>
-        <th scope="row">Ruby</th>
-        <td>40%</td>
-    </tr>
-    <tr>
-        <th scope="row">JavaScript</th>
-        <td>26%</td>
-    </tr>
-    <tr>
-        <th scope="row">Shell</th>
-        <td>5%</td>
-    </tr>
-    <tr>
-        <th scope="row">Python</th>
-        <td>5%</td>
-    </tr>
-    <tr>
-        <th scope="row">PHP</th>
-        <td>4%</td>
-    </tr>
-    <tr>
-        <th scope="row">C</th>
-        <td>4%</td>
-    </tr>
-    <tr>
-        <th scope="row">Perl</th>
-        <td>3%</td>
-    </tr>
-    <tr>
-        <th scope="row">C++</th>
-        <td>2%</td>
-    </tr>
-    <tr>
-        <th scope="row">Java</th>
-        <td>2%</td>
-    </tr>
-    <tr>
-        <th scope="row">Objective-C</th>
-        <td>2%</td>
-    </tr>
-    </tbody>
-</table>
 </body>
 </html>
