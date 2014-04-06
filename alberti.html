@@ -4,47 +4,100 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 <head>
 <title>Alberti Cipher Disk</title>
-
-
 <script src="jquery-2.1.0.js"></script>
-<script src="raphael-min.js"></script>
+<script src="raphael.js"></script>
 </head>
 
 <body>
-
-<canvas id="canvas" width="578" height="400"></canvas>
+<div id="holder"></div>
 <script>
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var centerX = canvas.width / 2;
-var centerY = canvas.height / 2;
-var radius = 70;
 
-context.beginPath();
-context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-context.fillStyle = 'green';
-context.fill();
-context.lineWidth = 5;
-context.strokeStyle = '#003300';
-context.stroke();
+Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
+        var paper = this,
+            rad = Math.PI / 180;
 
-context.beginPath();
-context.arc(centerX, centerY, radius, 0, Math.PI/3, false);
-context.closePath();
-context.fillStyle = 'green';
-context.fill();
-context.lineWidth = 2;
-context.strokeStyle = '#0033AB';
-context.stroke();
+    function sector(cx, cy, r, startAngle, endAngle, params) {
+        var x1 = cx + r * Math.cos(-startAngle * rad),
+            x2 = cx + r * Math.cos(-endAngle * rad),
+            y1 = cy + r * Math.sin(-startAngle * rad),
+            y2 = cy + r * Math.sin(-endAngle * rad);
+        var path = paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+        return path;
+        var sector = {cx: cx, cy: cy, size: endAngle - startAngle, path: path};
+        return sector;
+    }
 
-$("#canvas").click(function(e){
-    var x = Math.floor((e.pageX-$("#canvas").offset().left) / 20);
-    var y = Math.floor((e.pageY-$("#canvas").offset().top) / 20);
-    context.fillStyle = "rgb(255,255,255)";
-    context.fillRect(x*20, y*20, 20, 20);
-});
+    function sector_set(sector, cx, cy, r, startAngle, endAngle, params) {
+        var x1 = cx + r * Math.cos(-startAngle * rad),
+            x2 = cx + r * Math.cos(-endAngle * rad),
+            y1 = cy + r * Math.sin(-startAngle * rad),
+            y2 = cy + r * Math.sin(-endAngle * rad);
+        var attrs = ["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"];
+        sector.attr("path", attrs);
+    }
+
+    
+
+    params = {fill: "#0fc", "stroke-width": 3};
+    p = sector(200, 200, 100, 0, 45, params);
+    angle = 10;
+    p.click(function(){
+                sector_set(p, 200, 200, 100, angle, angle + 45, params);
+                angle += 10;
+            });
+
+}
+
+
+$(function () {
+        $("table").hide();
+        Raphael("holder", 700, 700).pieChart(350, 350, 200, [], [], "#f0f");
+        });
 
 </script>
-
+<table>
+    <tbody>
+    <tr>
+        <th scope="row">Ruby</th>
+        <td>40%</td>
+    </tr>
+    <tr>
+        <th scope="row">JavaScript</th>
+        <td>26%</td>
+    </tr>
+    <tr>
+        <th scope="row">Shell</th>
+        <td>5%</td>
+    </tr>
+    <tr>
+        <th scope="row">Python</th>
+        <td>5%</td>
+    </tr>
+    <tr>
+        <th scope="row">PHP</th>
+        <td>4%</td>
+    </tr>
+    <tr>
+        <th scope="row">C</th>
+        <td>4%</td>
+    </tr>
+    <tr>
+        <th scope="row">Perl</th>
+        <td>3%</td>
+    </tr>
+    <tr>
+        <th scope="row">C++</th>
+        <td>2%</td>
+    </tr>
+    <tr>
+        <th scope="row">Java</th>
+        <td>2%</td>
+    </tr>
+    <tr>
+        <th scope="row">Objective-C</th>
+        <td>2%</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
