@@ -10,14 +10,20 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 </head>
 
 <body>
+<h1 align="center"> Alberti cipher disk</h1>
 <div id="holder"></div>
 <div id="wheelinfo"></div>
+<div id="debug"></div>
+
+<div id="chars_outer"></div>
+<div id="chars_inner"></div>
+
 
 <script>
-
 holder_id = 'holder';
 holder = '#' + holder_id;
 startRotation = 0;
+currentRotation = 0;
 wheelIsRotating = false;
 totalRotations = 52;
 oneRotAngle = 360.0 / totalRotations;
@@ -31,8 +37,8 @@ function getAngle(e) {
     var wheeloffset = $(holder).offset();
     var wheelwidth = $(holder).width();
     var wheelheight = $(holder).height();
-    var originx = wheeloffset.left + (wheelwidth / 2);
-    var originy = wheeloffset.top + (wheelheight / 2);
+    var originx = wheeloffset.left + (wheelwidth  / 2);
+    var originy = wheeloffset.top  + (wheelheight / 2);
 
     var x = e.pageX - originx;
     var y = e.pageY - originy;
@@ -69,15 +75,55 @@ function getAngle(e) {
     }
 }
 
+function mod(a, b) {
+    return (a % b + b) % b;
+}
+
 function showRotation(n) {
+    // Rotate disk
+    var current_angle = 360.0 / totalRotations * currentRotation;
     var angle = 360.0 / totalRotations * n;
-    img.animate({transform: "r" + angle}, 0);
+    $('#debug').html(n);
+    img.animate({transform: "r" + angle}, 0);  
+    
+    // Rotate letters
+    var outerRow = "ABCDEFGILMNOPQRSTVXZ1234++";
+    var innerRow = "gklnprtvz&xysomqihfdbace==";
+    var rowLength = outerRow.length;
+    var outerChars = outerRow.split("");
+    var notLinedUp = (Math.abs(n % 2) == 1);
+    var i = 0;
+    var s = '';
+    var br_str = ' ';
+    
+    if (!notLinedUp) {
+        s = br_str + s;
+    }
+
+    n = mod(n, 52);
+    
+    while (i < rowLength) {
+        var index = mod(Math.floor(-n/2) + i, rowLength);
+        var schar = outerChars[index];
+        
+        if (index == 0) {
+            s += br_str + '<b><u>' + schar + '</u></b>' + br_str;
+        }        
+        else {
+            s += br_str + schar + br_str;
+        }        
+        i += 1;
+    }
+    
+    $('#chars_outer').html('<pre>' + s + '</pre>');
+    var dbr_str = br_str + br_str;
+    $('#chars_inner').html('<pre>' + dbr_str + innerRow.split("").join(dbr_str) + '</pre>');
 }
 
 
 function clickCipherWheel(e) {
     var angle = getAngle(e);
-
+    
     if (wheelIsRotating) {
         wheelIsRotating = false;
         $('#wheelinfo').html(default_text);
@@ -98,8 +144,9 @@ function rotateCipherWheel(e) {
         return;
     }
     adjustment = parseInt((startAngle - getAngle(e)) / oneRotAngle);
-    currentRotation = (adjustment + startRotation) % totalRotations;
-    showRotation(currentRotation);
+    newRotation = (adjustment + startRotation) % totalRotations;
+    showRotation(newRotation);
+    currentRotation = newRotation;
 }
 
 function prepareAll() {
@@ -122,11 +169,13 @@ $(document).ready(function() {
         disky = height / 2,
         diskrad = 100;
     prepareAll();
-    $('#wheelinfo').html(default_text);    
+    
+    // Show disk
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
+    showRotation(0);       
+    $('#wheelinfo').html(default_text);    
 });
+
 </script>
-
-
 </body>
 </html>

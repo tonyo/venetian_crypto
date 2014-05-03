@@ -1,5 +1,5 @@
 #holder {
-  border: solid 3px #000;
+  border: solid 1px #000;
   width: 400px;
   margin-left: auto;
   margin-right: auto;
@@ -7,4 +7,11 @@
 
 #wheelinfo {
   text-align: center;
+}
+
+#chars_outer, #chars_inner {
+    border: solid 1px #000;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
 }
