@@ -4,23 +4,30 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 <head>
 <title>Alberti Cipher Disk</title>
-<script src="js/jquery-2.1.0.js"></script>
-<script src="js/raphael-min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<script src="../js/jquery-2.1.0.js"></script>
+<script src="../js/raphael-min.js"></script>
 </head>
 
 <body>
-<div id="holder" style="border: solid 3px #000; width: auto; display: inline-block;"></div>
-<div id="wheelinfo" style="text-align: center;">Click wheel to rotate.</div>
+<div id="holder"></div>
+<div id="wheelinfo"></div>
+
 <script>
 
-holder = '#holder'
+holder_id = 'holder';
+holder = '#' + holder_id;
 startRotation = 0;
 wheelIsRotating = false;
 totalRotations = 52;
 oneRotAngle = 360.0 / totalRotations;
 
-// from http://inventwithpython.com/cipherwheel/
+default_text = 'Click wheel to rotate.';
+stop_text = 'Click wheel to stop rotating.';
+
+// Based on http://inventwithpython.com/cipherwheel/
 function getAngle(e) {
+    var PI = 3.1415926535;
     var wheeloffset = $(holder).offset();
     var wheelwidth = $(holder).width();
     var wheelheight = $(holder).height();
@@ -39,7 +46,7 @@ function getAngle(e) {
         }
     }
     var slope = (y / x);
-    var angle = Math.atan( slope ) * (180 / 3.141592);
+    var angle = Math.atan( slope ) * (180 / PI);
 
     if (y >= 0 && x >= 0) {
         angle = (90 - angle) + 270.0;
@@ -67,12 +74,13 @@ function showRotation(n) {
     img.animate({transform: "r" + angle}, 0);
 }
 
+
 function clickCipherWheel(e) {
     var angle = getAngle(e);
 
     if (wheelIsRotating) {
         wheelIsRotating = false;
-        $('#wheelinfo').html('Click wheel to rotate.');
+        $('#wheelinfo').html(default_text);
         adjustment = parseInt((startAngle - angle) / oneRotAngle);
         startRotation = (adjustment + startRotation) % totalRotations;
         return;
@@ -80,7 +88,7 @@ function clickCipherWheel(e) {
     else {
         startAngle = angle;
         wheelIsRotating = true;
-        $('#wheelinfo').html('Click wheel to stop rotating.');
+        $('#wheelinfo').html(stop_text);
     }
 }
 
@@ -94,30 +102,31 @@ function rotateCipherWheel(e) {
     showRotation(currentRotation);
 }
 
-$(holder).click( clickCipherWheel );
-$(holder).mousemove( rotateCipherWheel );
+function prepareAll() {
+    $(holder).click(clickCipherWheel);
+    $(holder).mousemove(rotateCipherWheel);
 
-Raphael.fn.disks = function (cx, cy, r) {
-    var paper = this;
-
-    var imgX = 300,
-        imgY = 300;
-
-    img_inner = paper.image("img/alberti_inner.png",cx - imgX/2, cy - imgY/2, imgX, imgY);
-    img = paper.image("img/alberti_outer.png", cx - imgX/2, cy - imgY/2, imgX, imgY);
+    Raphael.fn.disks = function (cx, cy, r) {
+        var paper = this;
+        var imgX = 300,
+            imgY = 300;
+        img_inner = paper.image("img/alberti_inner.png",cx - imgX/2, cy - imgY/2, imgX, imgY);
+        img = paper.image("img/alberti_outer.png", cx - imgX/2, cy - imgY/2, imgX, imgY);
+    }
 }
 
-
-var width = 400,
-    height = 400,
-    diskx = width / 2,
-    disky = height / 2,
-    diskrad = 100;
-
 $(document).ready(function() {
-    Raphael("holder", width, height).disks(diskx, disky, diskrad);
+    var width = 400,
+        height = 400,
+        diskx = width / 2,
+        disky = height / 2,
+        diskrad = 100;
+    prepareAll();
+    $('#wheelinfo').html(default_text);    
+    Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
 });
-
 </script>
+
+
 </body>
 </html>
