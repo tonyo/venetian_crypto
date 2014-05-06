@@ -1,0 +1,32 @@
+body {
+    font-family: Cambria, Georgia, serif;
+}
+
+.h1_header {
+    margin-left: 140px;
+    font-size: 24pt;
+    font-weight:bold;
+    height: 50px;
+}
+
+#holder {
+    border: solid 1px #000;
+    width: 400px;
+    margin-left: 100px;
+    margin-right: auto;
+}
+
+#tabula_recta {
+    width: 550px;
+    margin-right: 100px;
+    margin-left: auto;
+    font-family: Lucidatypewriter, monospace;
+}
+
+.h_row {
+    color: Blue;
+}
+
+.h_column {
+    color: Red;
+}

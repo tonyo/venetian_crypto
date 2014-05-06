@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Polyalphabetic ciphers</title>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<script src="../js/jquery-2.1.0.js"></script>
+<script src="../js/raphael-min.js"></script>
+
+<script>
+
+highlighted_row = -1;
+highlighted_column = -1;
+
+function drawTable() {
+    var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var chars = alphabet.split("");
+    console.log(chars);
+    var tableHtml = '';
+    
+    for (var i = 0; i < 26; i++) {
+        var currentRow = '';        
+        for (var j = 0; j < 26; j++) {    
+            // Make two classes instead of one id?
+            currentRow += '<span id="el_' + i + '_' + j +'">' + chars[j] + " </span>";
+        }
+        tableHtml += currentRow + "<br />";                    
+        chars.push(chars.shift());
+    }
+    $("#tabula_recta").html(tableHtml);
+}
+
+function highlightRow(i) {
+    $("[id^=el_" + highlighted_row + "_]").removeClass('h_row');
+    highlighted_row = i;
+    $("[id^=el_" + i + "_]").addClass('h_row');
+}
+
+function highlightColumn(j) {
+    $("[id$=_" + highlighted_column + "]").removeClass('h_column');
+    highlighted_column = j;
+    $("[id$=_" + j + "]").addClass('h_column');
+}
+
+$("#hide_show_tabula").click(function() {
+    $('#tabula_recta').slideToggle(500);
+});
+
+$(document).ready(function() {
+    drawTable();
+});
+
+</script>
+</head>
+
+<body>
+<div class="h1_header"> Polyalphabetic ciphers </div>
+
+<div id="cihpertext"></div>
+<div id="hide_show_tabula">Hide/show</div>
+<div id="tabula_recta"></div>
+
+</body>
+</html>
