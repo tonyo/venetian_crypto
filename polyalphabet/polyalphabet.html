@@ -9,8 +9,8 @@
 
 <script>
 
-highlighted_row = 0;
-highlighted_column = 0;
+highlighted_row = -1;
+highlighted_column = -1;
 
 function drawTable() {
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -21,7 +21,8 @@ function drawTable() {
     for (var i = 0; i < 26; i++) {
         var currentRow = '';        
         for (var j = 0; j < 26; j++) {    
-            currentRow += '<span id="el_' + i + '_' + j +'">' + chars[j] + "</span>";
+            // Make two classes instead of one id?
+            currentRow += '<span id="el_' + i + '_' + j +'">' + chars[j] + " </span>";
         }
         tableHtml += currentRow + "<br />";                    
         chars.push(chars.shift());
@@ -41,6 +42,10 @@ function highlightColumn(j) {
     $("[id$=_" + j + "]").addClass('h_column');
 }
 
+$("#hide_show_tabula").click(function() {
+    $('#tabula_recta').slideToggle(500);
+});
+
 $(document).ready(function() {
     drawTable();
 });
@@ -52,6 +57,7 @@ $(document).ready(function() {
 <div class="h1_header"> Polyalphabetic ciphers </div>
 
 <div id="cihpertext"></div>
+<div id="hide_show_tabula">Hide/show</div>
 <div id="tabula_recta"></div>
 
 </body>
