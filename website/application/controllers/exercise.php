@@ -11,7 +11,7 @@ class Exercise extends CI_Controller {
         if ($res == null)
         {
             // No such task
-            $data['page_data'] = 'Failure!';
+            show_error('Failure: incorrect task');
         }
         else
         {
@@ -23,11 +23,13 @@ class Exercise extends CI_Controller {
     
     function check($id="")
     {
+        $this->load->model('Exercise_Model');
         $res = $this->Exercise_Model->get($id);
         if ($res == null)
         {
             // No such task
             $data['page_data'] = 'Failure! Incorrect task.';
+            return;
         }
         else
         {
@@ -37,5 +39,4 @@ class Exercise extends CI_Controller {
         }     
         $this->load->view('exercise', $data);        
     }    
-    
 }

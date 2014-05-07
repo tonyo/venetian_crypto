@@ -151,6 +151,41 @@ function prepareAll() {
     }
 }
 
+function fetchExercise(id) {
+    // Show exercise
+    $.ajax({ 
+        url: "/website/index.php/exercise/get/" + id,
+        success: 
+            function(result) {
+                $("#exercise_text").html(result);
+                
+            },
+        error:
+            function() {
+                $('#exercise_block').html("<em>Cannot fetch exercise...</em>");
+                $('#exercise_block').data("id", id);
+            }
+    });
+    
+    $("#exercise_form").submit(
+        function(ev) {
+            $.ajax({ 
+                url: "/website/index.php/exercise/check/" + id,
+                type: 'POST',
+                data: "answer=" + $("#inputAnswer").val(),
+                success: 
+                    function(result) {
+                        $("#exercise_text").html(result);
+                    },
+                error:
+                    function() {
+                        $('#exercise_block').html("<em>Checking error...</em>");
+                    }
+            });
+            ev.preventDefault();
+        });
+}
+
 $(document).ready(function() {
     var width = $("#holder").width(),
         height = width,
@@ -163,15 +198,7 @@ $(document).ready(function() {
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
     showRotation(0);       
     setIsRotating(false);
-    
-    
-    // Show exercise
-    $.ajax({url: "/website/index.php/exercise/get/1",
-            success: 
-                function(result) {
-                    $("#exercise_text").html(result);
-                }
-    });
+    fetchExercise('1');
 });
 
 </script>
@@ -185,19 +212,18 @@ $(document).ready(function() {
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
     </div>
-    <div class="col-xs-5">
+    <div id="exercise_block" class="col-xs-5">
         <h2><small>Check yourself</small></h2>
         <div id="exercise_text"></div>
-        <form class="form-horizontal">
+        <form id="exercise_form" class="form-horizontal" role="form" method="post">
             <div class="form-group">
                 <label for="inputAnswer" class="col-sm-2" style="padding-top: 5px">Answer</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputAnswer" placeholder="Answer" required />
+                    <input type="text" id="inputAnswer" placeholder="Answer" required />
                 </div>
              </div>
-            <button type="submit" class="btn btn-default">Check</button>
-        </form>
-        
+            <button id="submit_answer" type="Submit" class="btn btn-default">Check</button>
+        </form>        
         
     </div>
 </div>
