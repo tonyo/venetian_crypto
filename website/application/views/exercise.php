@@ -1,1 +1,1 @@
-<h4> <?php echo $page_data ?> </h4>
+<blockquote><h4> <?php echo $page_data ?> </h4></blockquote>

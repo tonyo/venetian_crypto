@@ -198,13 +198,13 @@ $(document).ready(function() {
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
     showRotation(0);       
     setIsRotating(false);
-    fetchExercise('1');
+    fetchExercise(3);
 });
 
 </script>
 <br />
 <div class="row">
-    <div id="cipher_block" class="col-xs-7">
+    <div id="cipher_block" class="col-xs-6">
         <div id="holder"></div>
         <div id="wheelinfo"></div>
         <div id="debug"></div>
@@ -212,8 +212,8 @@ $(document).ready(function() {
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
     </div>
-    <div id="exercise_block" class="col-xs-5">
-        <h2><small>Check yourself</small></h2>
+    <div id="exercise_block" class="col-xs-6" style="background-color: #DBDBDB">
+        <h4><em>Check yourself</em></h4>
         <div id="exercise_text"></div>
         <form id="exercise_form" class="form-horizontal" role="form" method="post">
             <div class="form-group">
@@ -222,7 +222,7 @@ $(document).ready(function() {
                     <input type="text" id="inputAnswer" placeholder="Answer" required />
                 </div>
              </div>
-            <button id="submit_answer" type="Submit" class="btn btn-default">Check</button>
+            <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> <br /> <br />
         </form>        
         
     </div>
