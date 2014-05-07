@@ -152,8 +152,8 @@ function prepareAll() {
 }
 
 $(document).ready(function() {
-    var width = 320,
-        height = 320,
+    var width = $("#holder").width(),
+        height = width,
         diskx = width / 2,
         disky = height / 2,
         diskrad = 100;
@@ -174,4 +174,3 @@ $(document).ready(function() {
 
 <div id="chars_outer"></div>
 <div id="chars_inner"></div>
-

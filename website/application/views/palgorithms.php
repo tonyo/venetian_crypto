@@ -1,11 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Polyalphabetic ciphers</title>
-<link rel="stylesheet" type="text/css" href="styles.css"/>
-<script src="../js/jquery-2.1.0.js"></script>
-<script src="../js/raphael-min.js"></script>
+<link href="<?php echo CSS ?>palgo_style.css" rel="stylesheet">
 
 <script>
 
@@ -42,23 +35,23 @@ function highlightColumn(j) {
     $("[id$=_" + j + "]").addClass('h_column');
 }
 
-$("#hide_show_tabula").click(function() {
-    $('#tabula_recta').slideToggle(500);
-});
+
 
 $(document).ready(function() {
     drawTable();
+    
+    // Click handlers
+    $("#hide_show_tabula_btn").click(function() {
+        $('#tabula_recta').slideToggle(500);
+    });    
+    
 });
 
 </script>
-</head>
-
-<body>
-<div class="h1_header"> Polyalphabetic ciphers </div>
-
-<div id="cihpertext"></div>
-<div id="hide_show_tabula">Hide/show</div>
-<div id="tabula_recta"></div>
-
-</body>
-</html>
+<br />
+<div class="row">
+    <div id="ciphertext" class="col-xs-7">
+        <button type="button" id="hide_show_tabula_btn" class="btn btn-default">Hide/show</button>
+    </div>    
+    <div id="tabula_recta" class="col-xs-5"></div>
+</div>    

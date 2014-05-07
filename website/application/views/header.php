@@ -5,8 +5,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="<?php echo $content == 'home' ? 'active' : '' ?>"><a href="<?php echo site_url() ?>">Home</a></li>
-            <li class="<?php echo $content == 'alberti' ? 'active' : '' ?>"><a href="<?php echo site_url('alberti') ?>">Alberti Cypher Disk</a></li>
-            <li class="<?php echo $content == 'algotithms' ? 'active' : '' ?>"><a href="<?php echo site_url('algorithms') ?>">Algorithm</a></li>
+            <li class="<?php echo $content == 'alberti' ? 'active' : '' ?>"><a href="<?php echo site_url('alberti') ?>">Alberti Cipher Disk</a></li>
+            <li class="<?php echo $content == 'algotithms' ? 'active' : '' ?>"><a href="<?php echo site_url('palgorithms') ?>">Polyalphabetic Ciphers</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
