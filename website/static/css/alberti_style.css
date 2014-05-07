@@ -1,6 +1,6 @@
 
 #holder {
-    border: solid 1px #000;
+    /*border: solid 1px #000;*/
     width: 320px;
     margin-left: 100px;
     margin-right: auto;
@@ -16,8 +16,7 @@
 }
 
 #chars_outer, #chars_inner {
-    border: solid 1px #000;
-    width: 680px;
+    width: 650px;
     margin-left: 20px;
     margin-right: auto;
 }

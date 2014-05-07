@@ -168,9 +168,11 @@ $(document).ready(function() {
 </script>
 
 <br />
-<div id="holder"></div>
-<div id="wheelinfo"></div>
-<div id="debug"></div>
-
-<div id="chars_outer"></div>
-<div id="chars_inner"></div>
+<div id="cipher_block">
+    <div id="holder"></div>
+    <div id="wheelinfo"></div>
+    <div id="debug"></div>
+    
+    <div id="chars_outer"></div>
+    <div id="chars_inner"></div>
+</div>

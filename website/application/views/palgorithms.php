@@ -10,14 +10,14 @@ function drawTable() {
     var chars = alphabet.split("");
     console.log(chars);
     var tableHtml = '';
-    
+
     for (var i = 0; i < 26; i++) {
-        var currentRow = '';        
-        for (var j = 0; j < 26; j++) {    
+        var currentRow = '<div id="t_r' + i + '">';
+        for (var j = 0; j < 26; j++) {
             // Make two classes instead of one id?
             currentRow += '<span id="el_' + i + '_' + j +'">' + chars[j] + " </span>";
         }
-        tableHtml += currentRow + "<br />";                    
+        tableHtml += currentRow + "</div>";
         chars.push(chars.shift());
     }
     $("#tabula_recta").html(tableHtml);
@@ -36,7 +36,6 @@ function highlightColumn(j) {
 }
 
 
-
 $(document).ready(function() {
     drawTable();
     
@@ -51,7 +50,12 @@ $(document).ready(function() {
 <br />
 <div class="row">
     <div id="ciphertext" class="col-xs-7">
-        <button type="button" id="hide_show_tabula_btn" class="btn btn-default">Hide/show</button>
+        
     </div>    
-    <div id="tabula_recta" class="col-xs-5"></div>
+    <div class="col-xs-5">
+        <button type="button" id="hide_show_tabula_btn" class="btn btn-info btn-xs">Hide/show</button>
+        <br /> <br />
+        <div id="tabula_recta"></div>    
+    </div>
+    
 </div>    
