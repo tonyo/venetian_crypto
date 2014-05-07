@@ -26,13 +26,13 @@ function drawTable() {
 function highlightRow(i) {
     $("[id^=el_" + highlighted_row + "_]").removeClass('h_row');
     highlighted_row = i;
-    $("[id^=el_" + i + "_]").addClass('h_row');
+    $("[id^=el_" + i + "_]").addClass('h_row').css('background-color', '#96FFD2');
 }
 
 function highlightColumn(j) {
     $("[id$=_" + highlighted_column + "]").removeClass('h_column');
     highlighted_column = j;
-    $("[id$=_" + j + "]").addClass('h_column');
+    $("[id$=_" + j + "]").addClass('h_column').css('background-color', '#BABCFF');
 }
 
 

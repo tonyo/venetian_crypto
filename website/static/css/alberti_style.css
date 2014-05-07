@@ -20,3 +20,7 @@
     margin-left: 20px;
     margin-right: auto;
 }
+
+.result_correct {
+    background-color: #C9FFC7;   
+}

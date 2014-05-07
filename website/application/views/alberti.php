@@ -77,8 +77,8 @@ function showRotation(n) {
     img.animate({transform: "r" + angle}, 0);  
     
     // Rotate letters
-    var outerRow = "ABCDEFGILMNOPQRSTVXZ1234++";
-    var innerRow = "gklnprtvz&xysomqihfdbace==";
+    var outerRow = "ABCDEFGILMNOPQRSTVXZ1234";
+    var innerRow = "gklnprtvz&xysomqihfdbace";
     var rowLength = outerRow.length;
     var outerChars = outerRow.split("");
     var notLinedUp = (Math.abs(n % 2) == 1);
@@ -175,7 +175,7 @@ function fetchExercise(id) {
                 data: "answer=" + $("#inputAnswer").val(),
                 success: 
                     function(result) {
-                        $("#exercise_text").html(result);
+                        $("#result").html(result).addClass('result_correct');
                     },
                 error:
                     function() {
@@ -207,13 +207,13 @@ $(document).ready(function() {
     <div id="cipher_block" class="col-xs-6">
         <div id="holder"></div>
         <div id="wheelinfo"></div>
-        <div id="debug"></div>
+        <div id="debug1"></div>
         
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
     </div>
     <div id="exercise_block" class="col-xs-6" style="background-color: #DBDBDB">
-        <h4><em>Check yourself</em></h4>
+        <em><h3>Check yourself</h3></em>
         <div id="exercise_text"></div>
         <form id="exercise_form" class="form-horizontal" role="form" method="post">
             <div class="form-group">
@@ -222,7 +222,10 @@ $(document).ready(function() {
                     <input type="text" id="inputAnswer" placeholder="Answer" required />
                 </div>
              </div>
-            <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> <br /> <br />
+            <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> 
+            <br /> <br />
+            <div id="result"></div>
+            <br />
         </form>        
         
     </div>
