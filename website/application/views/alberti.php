@@ -163,16 +163,41 @@ $(document).ready(function() {
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
     showRotation(0);       
     setIsRotating(false);
+    
+    
+    // Show exercise
+    $.ajax({url: "/website/index.php/exercise/get/1",
+            success: 
+                function(result) {
+                    $("#exercise_text").html(result);
+                }
+    });
 });
 
 </script>
-
 <br />
-<div id="cipher_block">
-    <div id="holder"></div>
-    <div id="wheelinfo"></div>
-    <div id="debug"></div>
-    
-    <div id="chars_outer"></div>
-    <div id="chars_inner"></div>
+<div class="row">
+    <div id="cipher_block" class="col-xs-7">
+        <div id="holder"></div>
+        <div id="wheelinfo"></div>
+        <div id="debug"></div>
+        
+        <div id="chars_outer"></div>
+        <div id="chars_inner"></div>
+    </div>
+    <div class="col-xs-5">
+        <h2><small>Check yourself</small></h2>
+        <div id="exercise_text"></div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputAnswer" class="col-sm-2" style="padding-top: 5px">Answer</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputAnswer" placeholder="Answer" required />
+                </div>
+             </div>
+            <button type="submit" class="btn btn-default">Check</button>
+        </form>
+        
+        
+    </div>
 </div>

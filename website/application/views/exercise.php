@@ -1,3 +1,1 @@
-<h1> This is an exercise </h1>
-
-<?php echo $page_data ?>
+<h4> <?php echo $page_data ?> </h4>

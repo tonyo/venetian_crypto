@@ -15,8 +15,9 @@ class Exercise_Model extends CI_Model {
     function get($id)
     {
         $id = intval($id);
-        $this->load->database();    
+        $this->load->database();
         $query = $this->db->get_where('exercise', array('id' => $id));
+        $this->db->close();        
         if ($query->num_rows() == 0)
         {
             return null;
@@ -25,7 +26,6 @@ class Exercise_Model extends CI_Model {
         {
             return $query->result()[0];
         }
-        $this->db->close();
     }
-
+    
 }

@@ -1,10 +1,10 @@
 
-CREATE TABLE exercise(id    INTEGER PRIMARY KEY AUTOINCREMENT,
-                      text  TEXT NOT NULL);
-
+CREATE TABLE exercise(id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                      text      TEXT NOT NULL,
+                      answer    TEXT NOT NULL);
 
 
 -- New values
-INSERT INTO exercise(text) VALUES ('hello');
-INSERT INTO exercise(text) VALUES ('meow');
+INSERT INTO exercise(text, answer) VALUES ('1+1?', '2');
+INSERT INTO exercise(text, answer) VALUES ('Is Alberti awesome?', 'Yes');
 
