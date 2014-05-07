@@ -1,17 +1,7 @@
-body {
-    font-family: Cambria, Georgia, serif;
-}
-
-.h1_header {
-    margin-left: 140px;
-    font-size: 24pt;
-    font-weight:bold;
-    height: 50px;
-}
 
 #holder {
     border: solid 1px #000;
-    width: 400px;
+    width: 320px;
     margin-left: 100px;
     margin-right: auto;
 }
@@ -27,7 +17,7 @@ body {
 
 #chars_outer, #chars_inner {
     border: solid 1px #000;
-    width: 600px;
+    width: 680px;
     margin-left: 20px;
     margin-right: auto;
 }

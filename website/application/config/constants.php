@@ -38,10 +38,11 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('SITE_NAME', "Venetian Cryptography");
 
-define('BASE_URL', 'http://localhost/venetian_crypto/website/');
+define('BASE_URL', '/website/');
 define('STATIC_PATH', BASE_URL.'static/');
 define('CSS', STATIC_PATH.'css/');
 define('JS', STATIC_PATH.'js/');
+define('IMG', STATIC_PATH.'img/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

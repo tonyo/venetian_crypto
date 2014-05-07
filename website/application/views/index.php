@@ -10,6 +10,7 @@
     <link href="<?php echo CSS ?>bootstrap.css" rel="stylesheet">
     <link href="<?php echo CSS ?>bootstrap-theme.css" rel="stylesheet">
     <link href="<?php echo CSS ?>style.css" rel="stylesheet">
+    <script src="<?php echo JS ?>jquery-2.1.0.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="<?php echo JS ?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo JS ?>bootstrap.min.js"></script>
   </body>
 </html>
