@@ -22,5 +22,9 @@
 }
 
 .result_correct {
-    background-color: #C9FFC7;   
+    background-color: #C9FFC7;
+}
+
+.result_incorrect {
+    background-color: #F7999E;
 }

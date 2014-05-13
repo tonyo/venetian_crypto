@@ -28,15 +28,21 @@ class Exercise extends CI_Controller {
         if ($res == null)
         {
             // No such task
-            $data['page_data'] = 'Failure! Incorrect task.';
-            return;
+            $data = array( 'status' => 'failure',
+                           'reason' => 'Incorrect task!');
         }
         else
         {
             $correct_answer = $res->answer;
             $given_answer = $this->input->post('answer');
-            $data['page_data'] = $correct_answer == $given_answer ? 'Correct!' : 'Incorrect answer!';
+            if ($correct_answer == $given_answer) {
+                $data = array( 'status' => 'success',
+                               'reason' => 'Correct!');
+            } else {
+                $data = array( 'status' => 'failure',
+                               'reason' => 'Incorrect answer!');
+            }
         }     
-        $this->load->view('exercise', $data);        
+        echo json_encode($data);
     }    
 }

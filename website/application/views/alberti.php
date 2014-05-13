@@ -153,12 +153,11 @@ function prepareAll() {
 
 function fetchExercise(id) {
     // Show exercise
-    $.ajax({ 
+    $.ajax({
         url: "/website/index.php/exercise/get/" + id,
         success: 
             function(result) {
-                $("#exercise_text").html(result);
-                
+                $("#exercise_text").html(result);                
             },
         error:
             function() {
@@ -170,16 +169,22 @@ function fetchExercise(id) {
     $("#exercise_form").submit(
         function(ev) {
             $.ajax({ 
+                dataType: "json",
                 url: "/website/index.php/exercise/check/" + id,
                 type: 'POST',
                 data: "answer=" + $("#inputAnswer").val(),
                 success: 
                     function(result) {
-                        $("#result").html(result).addClass('result_correct');
+                        var el = $('#result').html(result.reason).removeClass("result_correct result_incorrect");
+                        if (result.status == 'success') {
+                            el.addClass('result_correct');
+                        } else {
+                            el.addClass('result_incorrect');
+                        }
                     },
                 error:
                     function() {
-                        $('#exercise_block').html("<em>Checking error...</em>");
+                        $('#exercise_block').html("<em>Checker error...</em>");
                     }
             });
             ev.preventDefault();
