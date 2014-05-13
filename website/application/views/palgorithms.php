@@ -12,10 +12,10 @@ function drawTable() {
     var tableHtml = '';
 
     for (var i = 0; i < 26; i++) {
-        var currentRow = '<div id="t_r' + i + '">';
+        var currentRow = '<div id="t_row' + i + '">';
         for (var j = 0; j < 26; j++) {
             // Make two classes instead of one id?
-            currentRow += '<span id="el_' + i + '_' + j +'">' + chars[j] + " </span>";
+            currentRow += '<div class="tr_' + i + ' tc_' + j +'">' + chars[j] + " </div>";
         }
         tableHtml += currentRow + "</div>";
         chars.push(chars.shift());
@@ -23,16 +23,32 @@ function drawTable() {
     $("#tabula_recta").html(tableHtml);
 }
 
+function highlightIntersection(i, j) {
+    if (i != -1 && j != -1) {
+        var el = ".tr_" + i + ".tc_" + j;
+        $(el).addClass('h_is');
+    }
+}
+
+function hideIntersection(i, j) {
+    var el = ".tr_" + i + ".tc_" + j;
+    $(el).removeClass('h_is');
+}
+
 function highlightRow(i) {
-    $("[id^=el_" + highlighted_row + "_]").removeClass('h_row');
+    hideIntersection(highlighted_row, highlighted_column);
+    $(".tr_" + highlighted_row).removeClass('h_row');
     highlighted_row = i;
-    $("[id^=el_" + i + "_]").addClass('h_row').css('background-color', '#96FFD2');
+    $(".tr_" + i).addClass('h_row');
+    highlightIntersection(i, highlighted_column);
 }
 
 function highlightColumn(j) {
-    $("[id$=_" + highlighted_column + "]").removeClass('h_column');
+    hideIntersection(highlighted_row, highlighted_column);
+    $(".tc_" + highlighted_column).removeClass('h_column');    
     highlighted_column = j;
-    $("[id$=_" + j + "]").addClass('h_column').css('background-color', '#BABCFF');
+    $(".tc_" + j).addClass('h_column');
+    highlightIntersection(highlighted_row, j);
 }
 
 

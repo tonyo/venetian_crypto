@@ -6,16 +6,31 @@
     margin-right: auto;
 }
 
-
 #tabula_recta {
     font-family: Lucidatypewriter, monospace;
     font-size: 12px;
 }
 
+
 .h_row {
-    color: Blue;
+    background-color: #96FFD2 !important; 
 }
 
 .h_column {
-    color: Red;
+    background-color: #BABCFF !important;
 }
+
+.h_is {
+    background-color: #00FF00 !important;
+} 
+
+/* table cells */
+div#tabula_recta div div {
+    /*border: red 1px dashed;*/
+    text-align: center;
+    display: inline-block;
+    width: 16px;
+    transition: all 0.5s ease;    
+}
+
+  
