@@ -33,4 +33,20 @@ div#tabula_recta div div {
     transition: all 0.5s ease;    
 }
 
+.arrow-large {
+    font-size: 40px;
+}
+
+.text-label {
+    width: 80px;
+    padding: 0px;
+}
   
+.text-group {
+    width: 80%;   
+}
+
+.text-edit {
+    font-family: Lucidatypewriter, monospace;
+    font-size: 20px;    
+}

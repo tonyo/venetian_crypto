@@ -67,6 +67,32 @@ $(document).ready(function() {
 <div class="row">
     <div id="ciphertext" class="col-xs-7">
         
+        <div id="edits_outer">
+        
+            <!-- Plaintext -->
+            <div class="input-group text-group">
+                <span class="input-group-addon text-label">Plaintext</span>            
+                <input type="text" class="form-control text-edit">
+            </div>
+            
+            <!-- Key -->            
+            <div class="input-group text-group">
+                <span class="input-group-addon text-label">Key</span>            
+                <input type="text" class="form-control text-edit">
+            </div>            
+            
+            <!-- Ciphertext -->            
+            <div class="input-group text-group">
+                <span class="input-group-addon text-label">Ciphertext</span>            
+                <input type="text" class="form-control text-edit">
+            </div>  
+            
+            
+            <span class="glyphicon glyphicon-arrow-left arrow-large"></span>
+            <span class="glyphicon glyphicon-arrow-right arrow-large"></span>
+        
+        </div>
+                
     </div>    
     <div class="col-xs-5">
         <button type="button" id="hide_show_tabula_btn" class="btn btn-info btn-xs">Hide/show</button>
