@@ -11,7 +11,6 @@ wheelIsRotating = false;
 totalRotations = 48;
 oneRotAngle = 360.0 / totalRotations;
 
-
 function setIsRotating(isRotating) {
     wheelIsRotating = isRotating;
     if (isRotating) {
@@ -159,6 +158,21 @@ function showExResult(result) {
     el.slideDown(500);
 }
 
+currentExercise = -1;
+exIds = [ <?php echo $task_ids ?> ];
+
+function fetchNextExercise() {
+    var ind = exIds.indexOf(currentExercise);
+    currentExercise = exIds[mod(ind + 1, exIds.length)];
+    fetchExercise(currentExercise);
+}
+
+function fetchPrevExercise() {
+    var ind = exIds.indexOf(currentExercise);
+    currentExercise = exIds[mod(ind - 1, exIds.length)];
+    fetchExercise(currentExercise);
+}
+
 function fetchExercise(id) {
     // Show exercise
     $.ajax({
@@ -192,6 +206,7 @@ function fetchExercise(id) {
             });
             ev.preventDefault();
         });
+        currentExercise = id;
 }
 
 $(document).ready(function() {
@@ -206,7 +221,12 @@ $(document).ready(function() {
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
     showRotation(0);       
     setIsRotating(false);
-    fetchExercise(3);
+    fetchNextExercise();
+    
+    // Handlers
+    $("#arrow-prev").click(fetchPrevExercise);
+
+    $("#arrow-next").click(fetchNextExercise);
 });
 
 </script>
@@ -233,6 +253,10 @@ $(document).ready(function() {
             <br /> <br />
             <div id="result"></div>
             <br />
+
+            <span id="arrow-prev" class="glyphicon glyphicon-arrow-left arrow-large"></span>
+            <span id="arrow-next" class="glyphicon glyphicon-arrow-right arrow-large"></span>
+
         </form>
     </div>
 

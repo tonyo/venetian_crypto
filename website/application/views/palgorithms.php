@@ -65,12 +65,12 @@ $(document).ready(function() {
     $("#arrow-back").click(function() {
         col += 1;
         highlightColumn(col);
-    });    
+    });
 
     $("#arrow-forward").click(function() {
         row += 1;
         highlightRow(row);
-    }); 
+    });
 });
 
 </script>
@@ -97,8 +97,7 @@ $(document).ready(function() {
                 <span class="input-group-addon text-label">Ciphertext</span>            
                 <input type="text" class="form-control text-edit">
             </div>  
-            
-            
+                        
             <span id="arrow-back" class="glyphicon glyphicon-arrow-left arrow-large"></span>
             <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
         
