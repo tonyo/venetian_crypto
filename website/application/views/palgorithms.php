@@ -58,8 +58,19 @@ $(document).ready(function() {
     // Click handlers
     $("#hide_show_tabula_btn").click(function() {
         $('#tabula_recta').slideToggle(500);
+    });
+
+    var col = 4;
+    var row = 4;
+    $("#arrow-back").click(function() {
+        col += 1;
+        highlightColumn(col);
     });    
-    
+
+    $("#arrow-forward").click(function() {
+        row += 1;
+        highlightRow(row);
+    }); 
 });
 
 </script>
@@ -88,8 +99,8 @@ $(document).ready(function() {
             </div>  
             
             
-            <span class="glyphicon glyphicon-arrow-left arrow-large"></span>
-            <span class="glyphicon glyphicon-arrow-right arrow-large"></span>
+            <span id="arrow-back" class="glyphicon glyphicon-arrow-left arrow-large"></span>
+            <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
         
         </div>
                 
