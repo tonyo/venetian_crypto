@@ -8,7 +8,7 @@ holder = '#' + holder_id;
 startRotation = 0;
 currentRotation = 0;
 wheelIsRotating = false;
-totalRotations = 52;
+totalRotations = 48;
 oneRotAngle = 360.0 / totalRotations;
 
 
@@ -73,7 +73,7 @@ function showRotation(n) {
     // Rotate disk
     var current_angle = 360.0 / totalRotations * currentRotation;
     var angle = 360.0 / totalRotations * n;
-    $('#debug').html(n);
+
     img.animate({transform: "r" + angle}, 0);  
     
     // Rotate letters
@@ -84,30 +84,30 @@ function showRotation(n) {
     var notLinedUp = (Math.abs(n % 2) == 1);
     var i = 0;
     var s = '';
-    var br_str = ' ';
+    var br_str = '  ';
     
     if (!notLinedUp) {
         s = br_str + s;
     }
 
     n = mod(n, totalRotations);
+    $('#debug').html(n);
     
     while (i < rowLength) {
-        var index = mod(Math.floor(-n/2) + i, rowLength);
+        var index = mod(rowLength - Math.floor((n+1)/2) + i, rowLength);
         var schar = outerChars[index];
         
         if (index == 0) {
-            s += br_str + '<b><u>' + schar + '</u></b>' + br_str;
+            s += '<b><u>' + schar + '</u></b>' + br_str;
         }        
         else {
-            s += br_str + schar + br_str;
+            s += schar + br_str;
         }        
         i += 1;
     }
     
     $('#chars_outer').html('<pre>' + s + '</pre>');
-    var dbr_str = br_str + br_str;
-    $('#chars_inner').html('<pre>' + dbr_str + innerRow.split("").join(dbr_str) + '</pre>');
+    $('#chars_inner').html('<pre>' + br_str + innerRow.split("").join(br_str) + '</pre>');
 }
 
 function clickCipherDisk(e) {
@@ -212,7 +212,6 @@ $(document).ready(function() {
     <div id="cipher_block" class="col-xs-6">
         <div id="holder"></div>
         <div id="wheelinfo"></div>
-        <div id="debug1"></div>
         
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
@@ -231,7 +230,11 @@ $(document).ready(function() {
             <br /> <br />
             <div id="result"></div>
             <br />
-        </form>        
-        
+        </form>
     </div>
+
+    <!--
+    <div id="debug"></div>
+    -->
+
 </div>
