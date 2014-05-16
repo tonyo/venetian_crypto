@@ -151,6 +151,14 @@ function prepareAll() {
     }
 }
 
+function showExResult(result) {
+    var el = $('#result').html(result.reason).removeClass("result_correct result_incorrect");
+    el.slideUp(0);
+    var new_class = (result.status == 'success' ? 'result_correct' : 'result_incorrect');
+    el.addClass(new_class);
+    el.slideDown(500);
+}
+
 function fetchExercise(id) {
     // Show exercise
     $.ajax({
@@ -165,7 +173,7 @@ function fetchExercise(id) {
                 $('#exercise_block').data("id", id);
             }
     });
-    
+
     $("#exercise_form").submit(
         function(ev) {
             $.ajax({ 
@@ -175,12 +183,7 @@ function fetchExercise(id) {
                 data: "answer=" + $("#inputAnswer").val(),
                 success: 
                     function(result) {
-                        var el = $('#result').html(result.reason).removeClass("result_correct result_incorrect");
-                        if (result.status == 'success') {
-                            el.addClass('result_correct');
-                        } else {
-                            el.addClass('result_incorrect');
-                        }
+                        showExResult(result);
                     },
                 error:
                     function() {
