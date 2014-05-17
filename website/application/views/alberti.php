@@ -150,9 +150,14 @@ function prepareAll() {
     }
 }
 
+function clearResults() {
+    var el = $('#result').removeClass("result_correct result_incorrect");
+    el.slideUp(0);    
+}
+
 function showExResult(result) {
-    var el = $('#result').html(result.reason).removeClass("result_correct result_incorrect");
-    el.slideUp(0);
+    clearResults();
+    var el = $('#result').html(result.reason);
     var new_class = (result.status == 'success' ? 'result_correct' : 'result_incorrect');
     el.addClass(new_class);
     el.slideDown(500);
@@ -174,6 +179,8 @@ function fetchPrevExercise() {
 }
 
 function fetchExercise(id) {
+    clearResults();
+    $("#inputAnswer").val('');
     // Show exercise
     $.ajax({
         url: "/website/index.php/exercise/get/" + id,
@@ -188,6 +195,9 @@ function fetchExercise(id) {
             }
     });
 
+    // Remove previous handlers first
+    $("#exercise_form").off('submit');
+    // Add new handler
     $("#exercise_form").submit(
         function(ev) {
             $.ajax({ 
