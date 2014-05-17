@@ -8,14 +8,25 @@ highlighted_column = -1;
 function drawTable() {
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var chars = alphabet.split("");
-    console.log(chars);
     var tableHtml = '';
 
-    for (var i = 0; i < 26; i++) {
+    // First row
+    var currentRow = '<div id="t_row0">';
+    currentRow += '<div class="tr_0 tc_0"> </div>'
+    for (var j = 1; j <= 26; j++) {
+        currentRow += '<div class="tr_0 tc_' + j +'">' 
+                      + chars[j-1] + " </div>";
+    }
+    tableHtml += currentRow + "</div>";
+    
+    
+    for (var i = 1; i <= 26; i++) {
         var currentRow = '<div id="t_row' + i + '">';
-        for (var j = 0; j < 26; j++) {
-            // Make two classes instead of one id?
-            currentRow += '<div class="tr_' + i + ' tc_' + j +'">' + chars[j] + " </div>";
+        currentRow += '<div class="tr_' + i + ' tc_0">'
+                      + chars[0] + '</div>';
+        for (var j = 1; j <= 26; j++) {
+            currentRow += '<div class="tr_' + i + ' tc_' + j +'">' 
+                          + chars[j-1] + " </div>";
         }
         tableHtml += currentRow + "</div>";
         chars.push(chars.shift());
@@ -51,6 +62,15 @@ function highlightColumn(j) {
     highlightIntersection(highlighted_row, j);
 }
 
+function getCoord(el) {
+    var classStr = el.attr('class');
+    var re_r = /tr_(\d+)/.exec(classStr);
+    var re_c = /tc_(\d+)/.exec(classStr);
+    if (re_r && re_c) {
+        return [re_r[1], re_c[1]];
+    }
+    return null;
+}
 
 $(document).ready(function() {
     drawTable();
@@ -71,6 +91,17 @@ $(document).ready(function() {
         row += 1;
         highlightRow(row);
     });
+    
+    $(".tr_0").click(function(e) {
+        ar = getCoord($(e.target));
+        highlightColumn(ar[1]);
+    });
+
+    $(".tc_0").click(function(e) {
+        ar = getCoord($(e.target));
+        highlightRow(ar[0]);
+    });    
+    
 });
 
 </script>

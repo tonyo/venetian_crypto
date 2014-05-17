@@ -82,8 +82,8 @@ function showRotation(n) {
     var outerChars = outerRow.split("");
     var notLinedUp = (Math.abs(n % 2) == 1);
     var i = 0;
-    var s = '';
     var br_str = '  ';
+    var s = br_str;
     
     if (!notLinedUp) {
         s = br_str + s;
@@ -104,9 +104,11 @@ function showRotation(n) {
         }        
         i += 1;
     }
-    
+        
     $('#chars_outer').html('<pre>' + s + '</pre>');
-    $('#chars_inner').html('<pre>' + br_str + innerRow.split("").join(br_str) + '</pre>');
+    $('#chars_inner').html('<pre>' + br_str + br_str
+                           + innerRow.split("").join(br_str) +
+                           '</pre>');
 }
 
 function clickCipherDisk(e) {

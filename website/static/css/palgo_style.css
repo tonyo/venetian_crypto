@@ -29,8 +29,24 @@ div#tabula_recta div div {
     /*border: red 1px dashed;*/
     text-align: center;
     display: inline-block;
-    width: 16px;
+    width: 15px;
     transition: all 0.5s ease;    
+}
+
+.tc_0.tr_0 {
+    border: none;
+}
+
+.tc_0, .tr_0 {
+    font-weight: bold;
+}
+
+.tc_0 {
+    border-right: black 1px solid;
+}
+
+.tr_0 {
+    border-bottom: black 1px solid;
 }
 
 .arrow-large {
