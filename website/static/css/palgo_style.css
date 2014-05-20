@@ -43,10 +43,12 @@ div#tabula_recta div div {
 
 .tc_0 {
     border-right: black 1px solid;
+    cursor: e-resize;
 }
 
 .tr_0 {
     border-bottom: black 1px solid;
+    cursor: s-resize;
 }
 
 .arrow-large {

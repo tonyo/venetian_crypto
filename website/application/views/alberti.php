@@ -14,9 +14,9 @@ oneRotAngle = 360.0 / totalRotations;
 function setIsRotating(isRotating) {
     wheelIsRotating = isRotating;
     if (isRotating) {
-        $('#wheelinfo').html('Click on cipher disk to stop rotating.');
+        $('#wheelinfo').html('Click on the disk to stop rotating.');
     } else {
-        $('#wheelinfo').html('Click on cipher disk to rotate.');    
+        $('#wheelinfo').html('Click on the outer disk to rotate.');
     }
 }
 
