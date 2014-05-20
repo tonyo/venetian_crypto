@@ -13,11 +13,11 @@ oneRotAngle = 360.0 / totalRotations;
 
 function setIsRotating(isRotating) {
     wheelIsRotating = isRotating;
-    // if (isRotating) {
-    //     $('#wheelinfo').html('Click on the disk to stop rotating.');
-    // } else {
+    if (isRotating) {
+        $('#wheelinfo').html('Release to stop rotating.');
+    } else {
         $('#wheelinfo').html('Click and drag the disk to rotate.');
-    // }
+    }
 }
 
 // Based on http://inventwithpython.com/cipherwheel/
@@ -145,6 +145,8 @@ function prepareAll() {
         wheelIsRotating = false;
         clickCipherDisk(e);
     });
+
+    $(holder).on('dragstart', function(event) {event.preventDefault();});
     $(holder).mousemove(rotateCipherDisk);
 
     Raphael.fn.disks = function (cx, cy, r) {
