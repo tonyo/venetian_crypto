@@ -2,11 +2,15 @@
 
 class Palgorithms extends CI_Controller {
 
-	public function index()
+	/*
+		@param-pam $which: alberti/trithemius/belaso/vigenere
+	*/
+	public function index($which='alberti')
 	{
 		$data['title'] = 'Polyalphabetic Ciphers';
 		$data['content'] = 'palgorithms';
 		$data['page_data'] = array();
+		$data['which'] = $which;
 		$this->load->view('index', $data);
 	}
 }

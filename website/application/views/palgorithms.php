@@ -100,40 +100,50 @@ $(document).ready(function() {
     $(".tc_0").click(function(e) {
         ar = getCoord($(e.target));
         highlightRow(ar[0]);
-    });    
+    });  
+
+    $('.nav.nav-tabs a').click(function() {
+        alert("Y u so "+$(this).attr("data-key")+"?")
+
+        return false;
+    });
     
 });
 
 </script>
-<br />
-<div class="row">
+
+<div class="row doo-hickey">
     <div id="ciphertext" class="col-xs-7">
-        
-        <div id="edits_outer">
-        
-            <!-- Plaintext -->
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#alberti" data-key="alberti" data-toggle="tab">Alberti</a></li>
+            <li><a href="#trithemius" data-key="trithemius" data-toggle="tab">Trithemius</a></li>
+            <li><a href="#belaso" data-key="belaso" data-toggle="tab">Belaso</a></li>
+            <li><a href="#vigenere" data-key="vigenere" data-toggle="tab">Vigenere</a></li>
+        </ul>
+
+        <div>
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Plaintext</span>            
                 <input type="text" class="form-control text-edit">
             </div>
-            
+
             <!-- Key -->            
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Key</span>            
                 <input type="text" class="form-control text-edit">
             </div>            
-            
+
             <!-- Ciphertext -->            
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Ciphertext</span>            
                 <input type="text" class="form-control text-edit">
             </div>  
-                        
+
             <span id="arrow-back" class="glyphicon glyphicon-arrow-left arrow-large"></span>
             <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
-        
         </div>
-                
+
     </div>    
     <div class="col-xs-5">
         <button type="button" id="hide_show_tabula_btn" class="btn btn-info btn-xs">Hide/show</button>

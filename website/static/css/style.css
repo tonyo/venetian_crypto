@@ -316,3 +316,11 @@ h1 {
         page-break-after: avoid;
     }
 }
+
+.doo-hickey {
+    padding-top: 20px;
+}
+
+.nav.nav-tabs {
+    margin-bottom: 20px;
+}
