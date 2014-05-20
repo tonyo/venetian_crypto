@@ -144,11 +144,11 @@ function prepareAll() {
 
     Raphael.fn.disks = function (cx, cy, r) {
         var paper = this;
-        var imgX = 300,
-            imgY = 300;
+        var imgX = 310,
+            imgY = 310;
         var img_path = "<?php echo IMG ?>";
-        img_inner = paper.image(img_path + "alberti_inner.png",cx - imgX/2, cy - imgY/2, imgX, imgY);
         img = paper.image(img_path + "alberti_outer.png", cx - imgX/2, cy - imgY/2, imgX, imgY);
+        img_inner = paper.image(img_path + "alberti_inner.png",cx - imgX/2, cy - imgY/2, imgX, imgY);
     }
 }
 

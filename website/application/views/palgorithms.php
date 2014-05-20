@@ -89,12 +89,13 @@ function prepareInputs() {
     });
     
     $(textInputClass).blur(function() {
-       $(this).hide();
+        $(this).hide();
         var correspLabel = $(this)
                            .siblings(textLabelClass)
                            .first();
-       correspLabel.text($(this).val());
-       correspLabel.show();
+        var new_text = $(this).val();
+        correspLabel.text(new_text);
+        correspLabel.show();
     });    
 }
 

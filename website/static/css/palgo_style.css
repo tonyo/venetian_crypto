@@ -72,4 +72,10 @@ div#tabula_recta div div {
 .text-text {
     font-family: Lucidatypewriter, monospace;
     font-size: 20px;
+    height: 28px;
+    background-color: white;   
+}
+
+.input-group {
+    margin: 10px;   
 }
