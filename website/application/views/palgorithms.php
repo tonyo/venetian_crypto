@@ -72,6 +72,33 @@ function getCoord(el) {
     return null;
 }
 
+function prepareInputs() {
+    var textInputClass = '.text-edit';
+    var textLabelClass = '.text-text';
+    
+    $(textInputClass).hide();
+    
+    $(textLabelClass).click(function() {
+        $(this).hide();
+        var correspInput = $(this)
+                           .siblings(textInputClass)
+                           .first();
+        correspInput.val($(this).text());
+        correspInput.show();
+        correspInput.focus();
+    });
+    
+    $(textInputClass).blur(function() {
+        $(this).hide();
+        var correspLabel = $(this)
+                           .siblings(textLabelClass)
+                           .first();
+        var new_text = $(this).val();
+        correspLabel.text(new_text);
+        correspLabel.show();
+    });    
+}
+
 $(document).ready(function() {
     drawTable();
     
@@ -108,6 +135,7 @@ $(document).ready(function() {
         return false;
     });
     
+    prepareInputs();    
 });
 
 </script>
@@ -124,20 +152,23 @@ $(document).ready(function() {
 
         <div>
             <div class="input-group text-group">
-                <span class="input-group-addon text-label">Plaintext</span>            
-                <input type="text" class="form-control text-edit">
+                <span class="input-group-addon text-label">Plaintext</span>
+                <div class="text-text">Meow1</div>
+                <input type="text" id="plain-edit" class="form-control text-edit">
             </div>
 
             <!-- Key -->            
             <div class="input-group text-group">
-                <span class="input-group-addon text-label">Key</span>            
-                <input type="text" class="form-control text-edit">
+                <span class="input-group-addon text-label">Key</span>
+                <div class="text-text">Meow2</div>
+                <input type="text" id="key-edit" class="form-control text-edit">
             </div>            
 
             <!-- Ciphertext -->            
             <div class="input-group text-group">
-                <span class="input-group-addon text-label">Ciphertext</span>            
-                <input type="text" class="form-control text-edit">
+                <span class="input-group-addon text-label">Ciphertext</span>
+                <div class="text-text">Meow3</div>                
+                <input type="text" id="cipher-edit" class="form-control text-edit">
             </div>  
 
             <span id="arrow-back" class="glyphicon glyphicon-arrow-left arrow-large"></span>
