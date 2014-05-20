@@ -83,9 +83,8 @@ function prepareInputs() {
         var correspInput = $(this)
                            .siblings(textInputClass)
                            .first();
-        correspInput.hide();
+        correspInput.val($(this).text());
         correspInput.show();
-        correspInput.val($(this).text())
         correspInput.focus();
     });
     
@@ -93,9 +92,9 @@ function prepareInputs() {
        $(this).hide();
         var correspLabel = $(this)
                            .siblings(textLabelClass)
-                           .first();       
-       correspLabel.show();
+                           .first();
        correspLabel.text($(this).val());
+       correspLabel.show();
     });    
 }
 
