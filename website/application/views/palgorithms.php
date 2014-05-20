@@ -99,6 +99,51 @@ function prepareInputs() {
     });    
 }
 
+currentIndex = -1;
+function resetEncryption() {
+    currentIndex = 0;
+    $('#cipher-label').text('');    
+}
+
+function initFields(ciphername) {
+    var plaintext =  'The East and Midrealm are at war';
+    $('#plain-label').text(plaintext);
+    var key = '';
+    
+    switch(ciphername) {
+        case 'alberti':
+            key = 'BBB BBBB CCC CCCCCCCC DDD DD DDD';
+            break;
+        case 'trithemius':
+            key = 'ABC DEFG HIJ KLMNOPQR STU VW XYZ';
+            break;
+        case 'belaso':
+            key = 'PEN NSIC WAR PENNSICW ARP EN NSI';
+            break;
+        case 'vigenere':
+            key = 'FTH EEAS TAN DMIDREAL MAR EA TWA';
+            break;
+        default:
+            alert('smth wrong');
+    }
+    $('#key-label').text(key);
+    resetEncryption();
+}
+
+function getIndex(l) {
+    var ascii = l.toUpperCase().charCodeAt(0);
+    var ind = ascii - "A".charCodeAt(0);
+    if (ind < 0 || ind >= 26) {
+        return -1;
+    }
+    return ind;
+}
+
+function getLetter(i) {
+    var l = String.fromCharCode("A".charCodeAt(0) + i);
+    return l;
+}
+
 $(document).ready(function() {
     drawTable();
     
@@ -107,16 +152,27 @@ $(document).ready(function() {
         $('#tabula_recta').slideToggle(500);
     });
 
-    var col = 4;
-    var row = 4;
     $("#arrow-back").click(function() {
-        col += 1;
-        highlightColumn(col);
+        //highlightColumn(col);
     });
 
     $("#arrow-forward").click(function() {
-        row += 1;
-        highlightRow(row);
+        var ptLet   = $('#plain-label').text()[currentIndex];
+        var ptIndex = getIndex(ptLet);
+        var keyLet  = $('#key-label').text()[currentIndex];
+        var keyIndex = getIndex(keyLet);
+        var newLet = '';
+        if (ptIndex == -1 || keyIndex == -1) {
+            newLet = ' ';        
+        } else {
+            highlightColumn(keyIndex + 1);
+            highlightRow(ptIndex + 1);
+            newLet = getLetter((keyIndex + ptIndex) % 26);
+        }
+
+        var curCt = $('#cipher-label').text();
+        $('#cipher-label').text(curCt + newLet)
+        currentIndex += 1;
     });
     
     $(".tr_0").click(function(e) {
@@ -129,13 +185,12 @@ $(document).ready(function() {
         highlightRow(ar[0]);
     });  
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {;
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var key = $(this).attr('data-key');
-        
-        // @Anton: set key to key
-        // ...
-    })
+        initFields(key);
+    });
     
+    initFields('alberti');
     prepareInputs();    
 });
 
@@ -152,23 +207,25 @@ $(document).ready(function() {
         </ul>
 
         <div>
+
+            <!-- Plaintext -->
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Plaintext</span>
-                <div class="text-text">Meow1</div>
+                <div id="plain-label" class="text-text">P1</div>
                 <input type="text" id="plain-edit" class="form-control text-edit">
             </div>
 
             <!-- Key -->            
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Key</span>
-                <div class="text-text">Meow2</div>
+                <div id="key-label" class="text-text">K1</div>
                 <input type="text" id="key-edit" class="form-control text-edit">
             </div>            
 
             <!-- Ciphertext -->            
             <div class="input-group text-group">
                 <span class="input-group-addon text-label">Ciphertext</span>
-                <div class="text-text">Meow3</div>                
+                <div id="cipher-label" class="text-text">C1</div>                
                 <input type="text" id="cipher-edit" class="form-control text-edit">
             </div>  
 
