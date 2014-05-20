@@ -185,7 +185,7 @@ function fetchExercise(id) {
     $("#inputAnswer").val('');
     // Show exercise
     $.ajax({
-        url: "/website/index.php/exercise/get/" + id,
+        url: "<?php echo site_url() ?>/exercise/get/" + id,
         success: 
             function(result) {
                 $("#exercise_text").html(result);                
@@ -204,7 +204,7 @@ function fetchExercise(id) {
         function(ev) {
             $.ajax({ 
                 dataType: "json",
-                url: "/website/index.php/exercise/check/" + id,
+                url: "<?php echo site_url() ?>/exercise/check/"+id,
                 type: 'POST',
                 data: "answer=" + $("#inputAnswer").val(),
                 success: 
