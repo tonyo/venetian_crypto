@@ -130,7 +130,12 @@ $(document).ready(function() {
     });  
 
     $('.nav.nav-tabs a').click(function() {
-        alert("Y u so "+$(this).attr("data-key")+"?")
+        var $heyLi = $(this).closest('li');
+        
+        $hey.closest('.nav.nav-tabs').find('li').removeClass('active');
+        $hey.addClass('active');
+
+        
 
         return false;
     });
