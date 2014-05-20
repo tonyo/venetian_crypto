@@ -114,8 +114,7 @@ function showRotation(n) {
 function clickCipherDisk(e) {
     var angle = getAngle(e);
     
-    if (wheelIsRotating) {
-        wheelIsRotating = false;
+    if (!wheelIsRotating) {
         setIsRotating(false);
         adjustment = parseInt((startAngle - angle) / oneRotAngle);
         startRotation = (adjustment + startRotation) % totalRotations;
@@ -123,7 +122,6 @@ function clickCipherDisk(e) {
     }
     else {
         startAngle = angle;
-        wheelIsRotating = true;
         setIsRotating(true);        
     }
 }
@@ -139,8 +137,14 @@ function rotateCipherDisk(e) {
 }
 
 function prepareAll() {
-    $('body').mousedown(clickCipherDisk);
-    $('body').mouseup(clickCipherDisk);
+    $(holder).mousedown(function(e) {
+        wheelIsRotating = true;
+        clickCipherDisk(e);
+    });
+    $(window).mouseup(function(e) {
+        wheelIsRotating = false;
+        clickCipherDisk(e);
+    });
     $(holder).mousemove(rotateCipherDisk);
 
     Raphael.fn.disks = function (cx, cy, r) {

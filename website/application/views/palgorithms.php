@@ -129,16 +129,12 @@ $(document).ready(function() {
         highlightRow(ar[0]);
     });  
 
-    $('.nav.nav-tabs a').click(function() {
-        var $heyLi = $(this).closest('li');
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {;
+        var key = $(this).attr('data-key');
         
-        $hey.closest('.nav.nav-tabs').find('li').removeClass('active');
-        $hey.addClass('active');
-
-        
-
-        return false;
-    });
+        // @Anton: set key to key
+        // ...
+    })
     
     prepareInputs();    
 });
@@ -178,6 +174,26 @@ $(document).ready(function() {
 
             <span id="arrow-back" class="glyphicon glyphicon-arrow-left arrow-large"></span>
             <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="alberti">
+                Leon Batista Alberti - first European publication on frequency analysis (15th c.)
+                developed the idea of using multiple cipher alphabets (switching every few words)
+                developed the cipher disk
+            </div>
+            <div class="tab-pane" id="trithemius">
+                Johannes Trithemius - idea of changing alphabets with each letter (but in order)
+                first printed book on cryptology, Steganographia (1518)
+            </div>
+            <div class="tab-pane" id="belaso">
+                Giovan Batista Belaso - using a passphrase for a polyalphabetic cipher
+                called Vigenère, but Vigenère's true contribution was much cooler
+            </div>
+            <div class="tab-pane" id="vigenere">
+                Blaise de Vigenère - autokey ciphers, using the text itself as the passphrase (1585)
+                forgotten, reinvented in the 19th c. (need to already know the first letter, F in this example)
+            </div>
         </div>
 
     </div>    

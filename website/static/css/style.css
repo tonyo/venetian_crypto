@@ -324,3 +324,8 @@ h1 {
 .nav.nav-tabs {
     margin-bottom: 20px;
 }
+
+.tab-content {
+    text-align: justify;
+    margin-top: 20px;
+}
