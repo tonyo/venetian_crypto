@@ -1,16 +1,17 @@
 
-#holder {
-    border: solid 1px #000;
-    width: 400px;
-    margin-left: 100px;
-    margin-right: auto;
-}
-
 #tabula_recta {
     font-family: Lucidatypewriter, monospace;
     font-size: 12px;
+    min-width: 440px;
 }
 
+#tabula_header {
+    padding: 0px;
+}
+
+#tabula_outer {
+    /*margin-left: 10px;*/
+}
 
 .h_row {
     background-color: #96FFD2 !important; 
@@ -25,7 +26,7 @@
 } 
 
 /* table cells */
-div#tabula_recta div div {
+#tabula_recta div div {
     /*border: red 1px dashed;*/
     text-align: center;
     display: inline-block;
@@ -61,7 +62,7 @@ div#tabula_recta div div {
 }
   
 .text-group {
-    width: 100%;   
+    width: 100%;
 }
 
 .text-edit {
@@ -77,5 +78,22 @@ div#tabula_recta div div {
 }
 
 .input-group {
-    margin: 10px;   
+    margin: 10px;
+}
+
+#col-header {
+    text-align: center;
+    letter-spacing: 8px;
+    color: #413AFC;
+}
+
+#row-header {
+    margin: 0px;
+    margin-top: 160px;
+    margin-right: 8px;
+    width: 14px;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+    color: #148500;
 }

@@ -9,7 +9,7 @@ function drawTable() {
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var chars = alphabet.split("");
     var tableHtml = '';
-
+    
     // First row
     var currentRow = '<div id="t_row0">';
     currentRow += '<div class="tr_0 tc_0"> </div>'
@@ -18,7 +18,6 @@ function drawTable() {
                       + chars[j-1] + " </div>";
     }
     tableHtml += currentRow + "</div>";
-    
     
     for (var i = 1; i <= 26; i++) {
         var currentRow = '<div id="t_row' + i + '">';
@@ -149,7 +148,7 @@ $(document).ready(function() {
     
     // Click handlers
     $("#hide_show_tabula_btn").click(function() {
-        $('#tabula_recta').slideToggle(500);
+        $('#tabula_outer').slideToggle(500);
     });
 
     $("#arrow-back").click(function() {
@@ -197,8 +196,7 @@ $(document).ready(function() {
 </script>
 
 <div class="row doo-hickey">
-    <div id="ciphertext" class="col-xs-7">
-
+    <div id="ciphertext" class="col-md-7">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#alberti" data-key="alberti" data-toggle="tab">Alberti</a></li>
             <li><a href="#trithemius" data-key="trithemius" data-toggle="tab">Trithemius</a></li>
@@ -254,10 +252,21 @@ $(document).ready(function() {
         </div>
 
     </div>    
-    <div class="col-xs-5">
+    <div class="col-md-5">
         <button type="button" id="hide_show_tabula_btn" class="btn btn-info btn-xs">Hide/show</button>
         <br /> <br />
-        <div id="tabula_recta"></div>    
+        
+        <div class="container" id="tabula_outer">
+            <div class="row">
+                <div class="col-md-1" id="row-header">
+                    P<br>L<br>A<br>I<br>N<br>T<br>E<br>X<br>T
+                </div>
+                <div class="col-md-11" id="tabula_header">
+                    <div id="col-header">KEY</div>
+                    <div id="tabula_recta"></div>
+                </div>
+            </div>
+        </div>
     </div>
     
 </div>    
