@@ -258,23 +258,25 @@ $(document).ready(function() {
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
     </div>
-    <div id="exercise_block" class="col-xs-6" style="background-color: #DBDBDB">
-        <em><h3>Check yourself</h3></em>
+    <div id="exercise_block" class="col-xs-6">
+        <h3>Check yourself</h3>
         <div id="exercise_text"></div>
         <form id="exercise_form" class="form-horizontal" role="form" method="post">
             <div class="form-group">
-                <label for="inputAnswer" class="col-sm-2" style="padding-top: 5px">Answer</label>
+                <label for="inputAnswer" class="col-sm-2" style="padding-top: 2px">
+                    Answer
+                </label>
                 <div class="col-sm-5">
                     <input type="text" id="inputAnswer" placeholder="Answer" required />
                 </div>
              </div>
             <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> 
+            <span id="arrow-group">
+                <span id="arrow-prev" class="glyphicon glyphicon-circle-arrow-left"></span>
+                <span id="arrow-next" class="glyphicon glyphicon-circle-arrow-right"></span>
+            </span>
             <br /> <br />
             <div id="result"></div>
-            <br />
-
-            <span class="arrow-prev" class="glyphicon glyphicon-arrow-left arrow-large"></span>
-            <span class="arrow-next" class="glyphicon glyphicon-arrow-right arrow-large"></span>
 
         </form>
     </div>

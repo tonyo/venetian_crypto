@@ -35,7 +35,7 @@ class Exercise extends CI_Controller {
         {
             $correct_answer = $res->answer;
             $given_answer = $this->input->post('answer');
-            if ($correct_answer == $given_answer) {
+            if (strtolower($correct_answer) == strtolower($given_answer)) {
                 $data = array( 'status' => 'success',
                                'reason' => 'Correct!');
             } else {

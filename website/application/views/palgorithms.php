@@ -264,6 +264,9 @@ $(document).ready(function() {
             <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
         </div>
 
+        <div>
+            <h3>Description</h3>
+        </div>
         <div class="tab-content">
             <div class="tab-pane active" id="alberti">
                 Leon Batista Alberti - first European publication on frequency analysis (15th c.)
@@ -271,8 +274,7 @@ $(document).ready(function() {
                 developed the cipher disk
             </div>
             <div class="tab-pane" id="trithemius">
-                Johannes Trithemius - idea of changing alphabets with each letter (but in order)
-                first printed book on cryptology, Steganographia (1518)
+                Johannes Trithemius introduced the idea of changing alphabets with each letter of plaintext.
             </div>
             <div class="tab-pane" id="belaso">
                 Giovan Batista Belaso - using a passphrase for a polyalphabetic cipher
