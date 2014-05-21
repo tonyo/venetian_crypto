@@ -85,6 +85,7 @@ function prepareInputs() {
         correspInput.val($(this).text());
         correspInput.show();
         correspInput.focus();
+        resetEncryption();
     });
     
     $(textInputClass).blur(function() {
@@ -98,10 +99,14 @@ function prepareInputs() {
     });    
 }
 
-currentIndex = -1;
+currentIndex = null;
 function resetEncryption() {
-    currentIndex = 0;
-    $('#cipher-label').text('');    
+    currentIndex = -1;
+    $('#cipher-label').text('');
+    var $keyLab = $('#key-label');
+    $keyLab.html($keyLab.text());
+    var $ptLab = $('#plain-label');
+    $ptLab.html($ptLab.text());
 }
 
 function initFields(ciphername) {
@@ -143,6 +148,39 @@ function getLetter(i) {
     return l;
 }
 
+function showLetterEncryption() {
+    if (currentIndex == -1) return;
+    var ptLet   = $('#plain-label').text()[currentIndex];
+    var ptIndex = getIndex(ptLet);
+    var keyLet  = $('#key-label').text()[currentIndex];
+    var keyIndex = getIndex(keyLet);
+    var newLet = '';
+    if (ptIndex == -1 || keyIndex == -1) {
+        newLet = ' ';        
+    } else {
+        highlightColumn(keyIndex + 1);
+        highlightRow(ptIndex + 1);
+        newLet = getLetter((keyIndex + ptIndex) % 26);
+    }
+    return newLet;
+}
+
+function splitLabel(label) {
+    var $lab = $(label);
+    var text = $lab.text();
+    var encPart = text.substr(0, currentIndex);
+    var curLet = text[currentIndex];
+    var nonEncPart = text.substr(currentIndex+1);
+    $lab.html('<span class="enc">'+encPart+'</span>'
+                    + '<span class="cur">'+curLet+'</span>'
+                    + '<span class="nonenc">'+nonEncPart+'</span>');
+}
+
+function showProgress() {
+    splitLabel('#plain-label');
+    splitLabel('#key-label');
+}
+
 $(document).ready(function() {
     drawTable();
     
@@ -152,26 +190,21 @@ $(document).ready(function() {
     });
 
     $("#arrow-back").click(function() {
-        //highlightColumn(col);
+        if (currentIndex == -1) return;
+        currentIndex -= 1;
+        showLetterEncryption();
+        var curCt = $('#cipher-label').text();
+        curCt = curCt.substr(0, currentIndex + 1);
+        $('#cipher-label').text(curCt);
+        showProgress();
     });
 
     $("#arrow-forward").click(function() {
-        var ptLet   = $('#plain-label').text()[currentIndex];
-        var ptIndex = getIndex(ptLet);
-        var keyLet  = $('#key-label').text()[currentIndex];
-        var keyIndex = getIndex(keyLet);
-        var newLet = '';
-        if (ptIndex == -1 || keyIndex == -1) {
-            newLet = ' ';        
-        } else {
-            highlightColumn(keyIndex + 1);
-            highlightRow(ptIndex + 1);
-            newLet = getLetter((keyIndex + ptIndex) % 26);
-        }
-
-        var curCt = $('#cipher-label').text();
-        $('#cipher-label').text(curCt + newLet)
         currentIndex += 1;
+        var curCt = $('#cipher-label').text();
+        var newLet = showLetterEncryption();
+        $('#cipher-label').text(curCt + newLet);
+        showProgress();
     });
     
     $(".tr_0").click(function(e) {

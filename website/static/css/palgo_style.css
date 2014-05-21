@@ -74,7 +74,8 @@
     font-family: Lucidatypewriter, monospace;
     font-size: 20px;
     height: 28px;
-    background-color: white;   
+    background-color: white;
+    white-space: pre;
 }
 
 .input-group {
@@ -96,4 +97,20 @@
     padding: 0px;
     text-align: center;
     color: #148500;
+}
+
+span.nonenc, span.cur, span.enc {
+    white-space: pre;
+}
+
+span.nonenc {
+    color: #8A1D2B;
+}
+
+span.cur {
+    border: red 1px dashed;
+}
+
+span.enc {
+    color: #148600;
 }
