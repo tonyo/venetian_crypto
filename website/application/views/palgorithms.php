@@ -1,5 +1,7 @@
 <link href="<?php echo CSS ?>palgo_style.css" rel="stylesheet">
+<link href="<?php echo CSS ?>common.css" rel="stylesheet">
 
+<script src="<?php echo JS ?>exercises.js"></script>
 <script>
 
 highlighted_row = -1;
@@ -181,6 +183,12 @@ function showProgress() {
     splitLabel('#key-label');
 }
 
+// Exercise stuff
+exIds = [ <?php echo $task_ids ?> ];
+get_url_base = "<?php echo site_url() ?>/exercise/get/";
+check_url_base = "<?php echo site_url() ?>/exercise/check/";
+
+
 $(document).ready(function() {
     drawTable();
     
@@ -264,9 +272,8 @@ $(document).ready(function() {
             <span id="arrow-forward" class="glyphicon glyphicon-arrow-right arrow-large"></span>
         </div>
 
-        <div>
-            <h3>Description</h3>
-        </div>
+
+        <h3>Description</h3>
         <div class="tab-content">
             <div class="tab-pane active" id="alberti">
                 <p>
@@ -291,8 +298,34 @@ $(document).ready(function() {
                 forgotten, reinvented in the 19th c. (need to already know the first letter, F in this example)
             </div>
         </div>
+        <br />
 
-    </div>    
+        <!-- Exercises -->
+        <div id="exercise_block" class="col-xs-10">
+            <h3>Check yourself</h3>
+            <div id="exercise_text"></div>
+            <form id="exercise_form" class="form-horizontal" role="form" method="post">
+                <div class="form-group">
+                    <label for="inputAnswer" class="col-sm-2" style="padding-top: 2px">
+                        Answer
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="text" id="inputAnswer" placeholder="Answer" required />
+                    </div>
+                </div>
+                <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> 
+                <span id="arrow-group">
+                    <span id="arrow-prev" class="glyphicon glyphicon-circle-arrow-left"></span>
+                    <span id="arrow-next" class="glyphicon glyphicon-circle-arrow-right"></span>
+                </span>
+                <br /> <br />
+                <div id="result"></div>
+            </form>
+        </div> <!-- exercises -->
+
+    </div>
+    
+    <!-- Tabula recta -->
     <div class="col-md-5">
         <button type="button" id="hide_show_tabula_btn" class="btn btn-info btn-xs">Hide/show</button>
         <br /> <br />

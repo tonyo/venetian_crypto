@@ -1,5 +1,8 @@
-<script src="<?php echo JS ?>raphael-min.js"></script>
 <link href="<?php echo CSS ?>alberti_style.css" rel="stylesheet">
+<link href="<?php echo CSS ?>common.css" rel="stylesheet">
+
+<script src="<?php echo JS ?>raphael-min.js"></script>
+<script src="<?php echo JS ?>exercises.js"></script>
 
 <script>
 
@@ -10,6 +13,7 @@ currentRotation = 0;
 wheelIsRotating = false;
 totalRotations = 48;
 oneRotAngle = 360.0 / totalRotations;
+startAngle = 0;
 
 function setIsRotating(isRotating) {
     wheelIsRotating = isRotating;
@@ -62,10 +66,6 @@ function getAngle(e) {
     else {
         return angle;
     }
-}
-
-function mod(a, b) {
-    return (a % b + b) % b;
 }
 
 function showRotation(n) {
@@ -159,74 +159,10 @@ function prepareAll() {
     }
 }
 
-function clearResults() {
-    var el = $('#result').removeClass("result_correct result_incorrect");
-    el.slideUp(0);    
-}
-
-function showExResult(result) {
-    clearResults();
-    var el = $('#result').html(result.reason);
-    var new_class = (result.status == 'success' ? 'result_correct' : 'result_incorrect');
-    el.addClass(new_class);
-    el.slideDown(500);
-}
-
-currentExercise = -1;
+// Exercise stuff
 exIds = [ <?php echo $task_ids ?> ];
-
-function fetchNextExercise() {
-    var ind = exIds.indexOf(currentExercise);
-    currentExercise = exIds[mod(ind + 1, exIds.length)];
-    fetchExercise(currentExercise);
-}
-
-function fetchPrevExercise() {
-    var ind = exIds.indexOf(currentExercise);
-    currentExercise = exIds[mod(ind - 1, exIds.length)];
-    fetchExercise(currentExercise);
-}
-
-function fetchExercise(id) {
-    clearResults();
-    $("#inputAnswer").val('');
-    // Show exercise
-    $.ajax({
-        url: "<?php echo site_url() ?>/exercise/get/" + id,
-        success: 
-            function(result) {
-                $("#exercise_text").html(result);                
-            },
-        error:
-            function() {
-                $('#exercise_block').html("<em>Cannot fetch exercise...</em>");
-                $('#exercise_block').data("id", id);
-            }
-    });
-
-    // Remove previous handlers first
-    $("#exercise_form").off('submit');
-    // Add new handler
-    $("#exercise_form").submit(
-        function(ev) {
-            $.ajax({ 
-                dataType: "json",
-                url: "<?php echo site_url() ?>/exercise/check/"+id,
-                type: 'POST',
-                data: "answer=" + $("#inputAnswer").val(),
-                success: 
-                    function(result) {
-                        showExResult(result);
-                    },
-                error:
-                    function() {
-                        $('#exercise_block').html("<em>Checker error...</em>");
-                    }
-            });
-            ev.preventDefault();
-        });
-        currentExercise = id;
-}
+get_url_base = "<?php echo site_url() ?>/exercise/get/";
+check_url_base = "<?php echo site_url() ?>/exercise/check/";
 
 $(document).ready(function() {
     var width = $("#holder").width(),
@@ -240,12 +176,6 @@ $(document).ready(function() {
     Raphael(holder_id, width, height).disks(diskx, disky, diskrad);
     showRotation(0);       
     setIsRotating(false);
-    fetchNextExercise();
-    
-    // Handlers
-    $("#arrow-prev").click(fetchPrevExercise);
-
-    $("#arrow-next").click(fetchNextExercise);
 });
 
 </script>
@@ -258,6 +188,7 @@ $(document).ready(function() {
         <div id="chars_outer"></div>
         <div id="chars_inner"></div>
     </div>
+
     <div id="exercise_block" class="col-xs-6">
         <h3>Check yourself</h3>
         <div id="exercise_text"></div>
