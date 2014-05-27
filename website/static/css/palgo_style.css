@@ -114,3 +114,9 @@ span.cur {
 span.enc {
     color: #148600;
 }
+
+/* Descriptions */
+
+div.tab-pane p {
+    font-size: 16px;
+}

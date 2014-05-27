@@ -269,16 +269,22 @@ $(document).ready(function() {
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="alberti">
+                <p>
                 Leon Batista Alberti - first European publication on frequency analysis (15th c.)
                 developed the idea of using multiple cipher alphabets (switching every few words)
                 developed the cipher disk
             </div>
             <div class="tab-pane" id="trithemius">
+                <p>
                 Johannes Trithemius introduced the idea of changing alphabets with each letter of plaintext.
             </div>
             <div class="tab-pane" id="belaso">
-                Giovan Batista Belaso - using a passphrase for a polyalphabetic cipher
-                called Vigenère, but Vigenère's true contribution was much cooler
+                <p>
+                Giovan Batista Belaso originally described the method in his 1553 book "La cifra", but the scheme was later misattributed to Blaise de Vigenère in the 19th century, and is now widely known as the "Vigenère cipher".
+                <p>
+                A passphrase is used ("PENNSIC WAR" in the example) to generate several alphabets with different shifts.
+                The cipher was considered unbreakable for a long time, and was broken only in the middle of 19 century.
+
             </div>
             <div class="tab-pane" id="vigenere">
                 Blaise de Vigenère - autokey ciphers, using the text itself as the passphrase (1585)

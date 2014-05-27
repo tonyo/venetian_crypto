@@ -7,6 +7,7 @@
             <li class="<?php echo $content == 'home' ? 'active' : '' ?>"><a href="<?php echo site_url() ?>">Home</a></li>
             <li class="<?php echo $content == 'alberti' ? 'active' : '' ?>"><a href="<?php echo site_url('alberti') ?>">Alberti Cipher Disk</a></li>
             <li class="<?php echo $content == 'palgorithms' ? 'active' : '' ?>"><a href="<?php echo site_url('palgorithms') ?>">Polyalphabetic Ciphers</a></li>
+            <li class="<?php echo $content == 'timeline' ? 'active' : '' ?>"><a href="<?php echo site_url('timeline') ?>">Timeline</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
