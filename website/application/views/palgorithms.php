@@ -118,7 +118,7 @@ function initFields(ciphername) {
     
     switch(ciphername) {
         case 'alberti':
-            key = 'BBB BBBB CCC CCCCCCCC DDD DD DDD';
+            key = 'BBB BBBB CCC CCCCCCCC DDD DD EEE';
             break;
         case 'trithemius':
             key = 'ABC DEFG HIJ KLMNOPQR STU VW XYZ';
@@ -215,15 +215,15 @@ $(document).ready(function() {
         showProgress();
     });
     
-    $(".tr_0").click(function(e) {
-        ar = getCoord($(e.target));
-        highlightColumn(ar[1]);
+    $('#tabula_recta div div').click(function(e) {
+        var ar = getCoord($(e.target));
+        if (ar[0] != 0) {
+            highlightRow(ar[0]);
+        }
+        if (ar[1] != 0) {
+            highlightColumn(ar[1]);
+        }
     });
-
-    $(".tc_0").click(function(e) {
-        ar = getCoord($(e.target));
-        highlightRow(ar[0]);
-    });  
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var key = $(this).attr('data-key');
@@ -277,8 +277,8 @@ $(document).ready(function() {
         <div class="tab-content">
             <div class="tab-pane active" id="alberti">
                 <p>
-                Leon Batista Alberti - first European publication on frequency analysis (15th c.)
-                developed the idea of using multiple cipher alphabets (switching every few words)
+                Leon Batista Alberti - first European publication on frequency analysis (15th century)
+                developed the idea of using multiple cipher alphabets (switching every few words, in our case -- every two words),
                 developed the cipher disk
             </div>
             <div class="tab-pane" id="trithemius">
@@ -309,8 +309,8 @@ $(document).ready(function() {
                     <label for="inputAnswer" class="col-sm-2" style="padding-top: 2px">
                         Answer
                     </label>
-                    <div class="col-sm-5">
-                        <input type="text" id="inputAnswer" placeholder="Answer" required />
+                    <div class="col-sm-12">
+                        <input type="text" id="inputAnswer" style="width: 90%;" placeholder="Answer" required />
                     </div>
                 </div>
                 <button id="submit_answer" type="Submit" class="btn btn-default">Check</button> 
