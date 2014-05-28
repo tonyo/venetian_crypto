@@ -113,6 +113,12 @@ h1 {
         width: ;
     }
 
+#home-img {
+    margin-top: 40px;
+}
+    #home-img img {
+        width: 100%;
+    }
 
 
 

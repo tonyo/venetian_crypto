@@ -277,32 +277,35 @@ $(document).ready(function() {
         <div class="tab-content">
             <div class="tab-pane active" id="alberti">
                 <p>
-                Leon Batista Alberti - first European publication on frequency analysis (15th century)
-                developed the idea of using multiple cipher alphabets (switching every few words, in our case -- every two words),
-                developed the cipher disk
+                Leon Batista Alberti came up with the idea of using multiple cipher alpahbets. These require switching the key every few words (in our example, every two words). He owned the first european publication on frequency analysis in the 15th century and he later developed the cipher disk.
+                </p>
             </div>
             <div class="tab-pane" id="trithemius">
                 <p>
-                Johannes Trithemius introduced the idea of changing alphabets with each letter of plaintext.
+                Johannes Trithemius introduced the idea of changing alphabets with each letter of plaintext. This means that the key does not repeat for two consecutive letters. The key can start from a previously given letter and then iterates through the rest of the alphabet.
+                </p>
             </div>
             <div class="tab-pane" id="belaso">
                 <p>
                 Giovan Batista Belaso originally described the method in his 1553 book "La cifra", but the scheme was later misattributed to Blaise de Vigenère in the 19th century, and is now widely known as the "Vigenère cipher".
+                </p>
                 <p>
                 A passphrase is used ("PENNSIC WAR" in the example) to generate several alphabets with different shifts.
                 The cipher was considered unbreakable for a long time, and was broken only in the middle of 19 century.
+                </p>
 
             </div>
             <div class="tab-pane" id="vigenere">
-                Blaise de Vigenère - autokey ciphers, using the text itself as the passphrase (1585)
-                forgotten, reinvented in the 19th c. (need to already know the first letter, F in this example)
+                <p>
+                Blaise de Vigenère introduced the idea of "autokey ciphers" in 1585, which use the text itself as the passphrase. This technique has been forgotten until the 19th century, when it has been reinvented. In order  to use it, the first letter of the key has to be given (in our example, the letter "F").
+                </p>
             </div>
         </div>
         <br />
 
         <!-- Exercises -->
         <div id="exercise_block" class="col-xs-10">
-            <h3>Check yourself</h3>
+            <h3>Test yourself</h3>
             <div id="exercise_text"></div>
             <form id="exercise_form" class="form-horizontal" role="form" method="post">
                 <div class="form-group">
