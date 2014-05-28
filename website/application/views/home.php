@@ -5,3 +5,10 @@
         <div id="home-img">
         	<img src="<?php echo IMG ?>venice-home.jpg" alt="Venice">
         </div>
+
+<br>
+
+<b>Creators</b>: Alexandru Ardelean (alexandru.ardelean AT epfl.ch), Ryan Brossy (ryan.brossy AT epfl.ch), Anton Ovchinnikov (anton.ovchinnikov AT epfl.ch)
+
+<br>
+<a href="http://veniceatlas.epfl.ch/category/students-blogs/life/venetian-cryptographies/">Blog at Venice Atlas</a>
