@@ -6,9 +6,18 @@
         	<img src="<?php echo IMG ?>venice-home.jpg" alt="Venice">
         </div>
 
+<p style="text-align: center; font-size: 14px">
+<br>
+<b>Created by</b>: Alexandru Ardelean (alexandru.ardelean AT epfl.ch), Ryan Brossy (ryan.brossy AT epfl.ch), Anton Ovchinnikov (anton.ovchinnikov AT epfl.ch)
+<br>
+<b>Links</b>: <a href="http://veniceatlas.epfl.ch/category/students-blogs/life/venetian-cryptographies/">Venice Atlas blog</a> and 
+<a href="https://github.com/rev112/venetian_crypto">Github project</a>
+<br> 
+Powered by 
+<a href="http://ellislab.com/codeigniter/">CodeIgniter</a>,
+<a href="http://getbootstrap.com">Bootstrap</a>, 
+<a href="http://jquery.com">jQuery</a> and 
+<a href="http://raphaeljs.com/">Raphaël.js</a>
 <br>
 
-<b>Creators</b>: Alexandru Ardelean (alexandru.ardelean AT epfl.ch), Ryan Brossy (ryan.brossy AT epfl.ch), Anton Ovchinnikov (anton.ovchinnikov AT epfl.ch)
 
-<br>
-<a href="http://veniceatlas.epfl.ch/category/students-blogs/life/venetian-cryptographies/">Blog at Venice Atlas</a>
