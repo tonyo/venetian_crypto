@@ -217,3 +217,50 @@ $(document).ready(function() {
     -->
 
 </div>
+
+<!-- Description -->
+<div id="desc">
+
+<h2>Description</h2>
+
+<p>
+There are several methods of encipherment using the Cipher disk, that were described by Leon Battista Alberti himself in his treatise "De Cifris" in 1467.
+
+<h3> First method </h3>
+
+<p>
+The first step of encryption is plaintext preprocessing. As you may have noticed, there are 20 letters and 4 digits on the outer disk, so letters such as U, Y and so on have to be removed or replaced in the plaintext. This design was used to additionally obfuscate the plaintext and eliminate common patterns.
+<p>
+Lowercase letters on the smaller ring are used as index letters. 
+
+Let's use "m" as an initial index. We choose uppercase letter (say, "T"), and align these two letters, rotating the outer disk.
+
+Then we start the encryption:
+
+<pre>
+_VENETIAN      Plaintext
+Tblzlmrcz      Ciphertext
+</pre>
+
+<p>
+After a word or two a different uppercase letter is chosen (say, 
+"F"), and the encryption alphabet is changed accordingly: now our index letter "m" corresponds to "F". Then, the enciphering process continues:
+
+<pre>
+(CRYPTOGRAPHIES -> CRVPTOGRAPFIES, thanks to preprocessing)
+
+_CRVPTOGRAPFIES     Plaintext
+Fyelakbqe&amiog     Ciphertext
+</pre>
+
+<p>
+Cipher index letters ("T" and "F") are included in the cryptograph. Therefore, the resulting ciphertext is:
+<pre>
+TblzlmrczFyelakbqe&amiog
+</pre>
+
+<h3> Second method </h3>
+
+<p> In this method the encryption of one of the digits (1, 2, 3, 4) indicates the predefined change of index letters. For example, the encryption of digit "2" may mean the change of index letter to the opposite, consecutive digits "14" may denote moving the disk by 5 letters clockwise, and so on. Therefore, it is possible to create the codebook with several digit codes to indicate the specific change of encrypting alphabet.
+
+</div>

@@ -22,3 +22,11 @@
     margin-right: auto;
 }
 
+div#desc p { 
+    font-size: 16px;
+}
+
+div#desc pre {
+    font-size: 16px;
+    padding: 5px;
+}

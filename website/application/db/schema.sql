@@ -8,9 +8,11 @@ CREATE TABLE exercise(id        INTEGER PRIMARY KEY AUTOINCREMENT,
 -- algo is either 'alberti' or 'palgo'
 
 -- New values: Alberti
-INSERT INTO exercise(text, answer, algo) VALUES ('1+1?', '2', 'alberti');
-INSERT INTO exercise(text, answer, algo) VALUES ('Is Alberti awesome?', 'Yes', 'alberti');
-INSERT INTO exercise(text, answer, algo) VALUES ('Decipher the following ciphertext: <em>AzgthpmamgQlfiyky</em>. Use letter <em>g</em> as an initial index letter.', 'LAGVER2RA_SIFARA', 'alberti');
+INSERT INTO exercise(text, answer, algo) VALUES ('Decipher the following ciphertext:<br> <em>AzgthpmamgQlfiyky</em><br> Use the first method of encryption and letter <em>g</em> as an initial index letter.', 'LAGVER2RA SIFARA', 'alberti');
+
+INSERT INTO exercise(text, answer, algo) VALUES ('Encrypt the following preprocessed message:<br> <em>VENICE IS CO2L</em><br> Use letter <em>p</em> as index letter, "L" as initial cipher index and change the it clockwise after each word', 'LogtncgMlxNbrql', 'alberti');
+
+INSERT INTO exercise(text, answer, algo) VALUES ('Decipher the following ciphertext:<br> <em>SbpezXlmcmif</em><br> Use letter <em>z</em> as an initial index letter.', 'DOGES PALACE', 'alberti');
 
 -- New values: Palgo
 INSERT INTO exercise(text, answer, algo) VALUES (
