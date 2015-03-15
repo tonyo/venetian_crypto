@@ -12,3 +12,5 @@ Creators:
   * Ryan Brossy
 
 For [Venice Atlas](http://veniceatlas.epfl.ch/), [EPFL](http://epfl.ch), 2014
+
+### The deployed version: http://vcrypto.tonyo.info/
