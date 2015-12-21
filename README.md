@@ -13,4 +13,4 @@ Creators:
 
 For [Venice Atlas](http://veniceatlas.epfl.ch/), [EPFL](http://epfl.ch), 2014
 
-### The deployed version: http://vcrypto.tonyo.info/
+### The deployed version: https://vcrypto.tonyo.info/
