@@ -10,7 +10,7 @@ services:
       - php
     labels:
       - "traefik.enable=true"
-      # - "traefik.http.routers.<unique-name>.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.<unique-name>.rule=Host(`vcrypto.tonyo.info`)"
       - "traefik.http.routers.<unique-name>.entrypoints=websecure"
       - "traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt"
       - "traefik.http.services.<unique-name>.loadbalancer.server.port=8081"
