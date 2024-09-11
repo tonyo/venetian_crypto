@@ -2,12 +2,18 @@ services:
   nginx:
     image: nginx:1.20
     ports:
-      - "80:80"
+      - "8081:80"
     volumes:
       - ./nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
       - ./website:/var/www/html:ro
     links:
       - php
+    labels:
+      - "traefik.enable=true"
+      # - "traefik.http.routers.<unique-name>.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.<unique-name>.entrypoints=websecure"
+      - "traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt"
+      - "traefik.http.services.<unique-name>.loadbalancer.server.port=8081"
 
   php:
     image: php:5.5-fpm
